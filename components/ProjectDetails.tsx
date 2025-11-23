@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import Section from './Section';
 import { projectsData } from '../projectsData';
-import { ArrowLeft, ArrowRight, Calendar, MapPin, Ruler, Clock } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Calendar, MapPin, Ruler, Clock, X, ZoomIn, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface ProjectDetailsProps {
   id: string;
@@ -9,15 +9,56 @@ interface ProjectDetailsProps {
 
 const ProjectDetails: React.FC<ProjectDetailsProps> = ({ id }) => {
   const project = projectsData.find(p => p.id === id);
-  
-  // Find next project for navigation
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [photoIndex, setPhotoIndex] = useState(0);
+
+  // Navigation Logic
   const currentIndex = projectsData.findIndex(p => p.id === id);
   const nextProject = projectsData[(currentIndex + 1) % projectsData.length];
   const prevProject = projectsData[(currentIndex - 1 + projectsData.length) % projectsData.length];
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // Reset scroll when project ID changes
+    window.scrollTo({ top: 0, behavior: 'auto' });
   }, [id]);
+
+  // Lightbox Handlers
+  const openLightbox = (index: number) => {
+    setPhotoIndex(index);
+    setLightboxOpen(true);
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+    document.body.style.overflow = 'auto';
+  };
+
+  const nextPhoto = useCallback((e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    if (!project) return;
+    setPhotoIndex((prev) => (prev + 1) % project.gallery.length);
+  }, [project]);
+
+  const prevPhoto = useCallback((e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    if (!project) return;
+    setPhotoIndex((prev) => (prev - 1 + project.gallery.length) % project.gallery.length);
+  }, [project]);
+
+  // Keyboard navigation for Lightbox
+  useEffect(() => {
+    if (!lightboxOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') nextPhoto();
+      if (e.key === 'ArrowLeft') prevPhoto();
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxOpen, nextPhoto, prevPhoto]);
 
   if (!project) {
     return <div className="min-h-screen flex items-center justify-center">Projet introuvable</div>;
@@ -25,9 +66,54 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ id }) => {
 
   return (
     <div className="bg-white min-h-screen">
+      {/* Lightbox Overlay */}
+      {lightboxOpen && (
+        <div 
+          className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm flex items-center justify-center transition-opacity duration-300"
+          onClick={closeLightbox}
+        >
+          {/* Controls */}
+          <button 
+            className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors p-2 z-50"
+            onClick={closeLightbox}
+          >
+            <X className="w-8 h-8" />
+          </button>
+
+          <button 
+            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors p-4 z-50 hover:bg-white/10 rounded-full"
+            onClick={prevPhoto}
+          >
+            <ChevronLeft className="w-8 h-8 md:w-10 md:h-10" />
+          </button>
+
+          <button 
+            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors p-4 z-50 hover:bg-white/10 rounded-full"
+            onClick={nextPhoto}
+          >
+            <ChevronRight className="w-8 h-8 md:w-10 md:h-10" />
+          </button>
+
+          {/* Image */}
+          <div 
+            className="relative max-w-[90vw] max-h-[90vh] w-full h-full flex items-center justify-center"
+            onClick={(e) => e.stopPropagation()} 
+          >
+            <img 
+              src={project.gallery[photoIndex]} 
+              alt={`Vue ${photoIndex + 1}`}
+              className="max-w-full max-h-full object-contain shadow-2xl"
+            />
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/60 text-xs uppercase tracking-widest font-medium">
+               {photoIndex + 1} / {project.gallery.length}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Back Button */}
       <div className="fixed top-24 left-6 z-40 hidden xl:block">
-        <a href="#realisations" className="flex items-center text-xs uppercase tracking-widest text-stone-500 hover:text-sage-600 transition-colors bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-gray-100">
+        <a href="#realisations" className="flex items-center text-xs uppercase tracking-widest text-stone-500 hover:text-sage-600 transition-colors bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-gray-100 hover:shadow-md">
           <ArrowLeft className="w-3 h-3 mr-2" /> Retour aux réalisations
         </a>
       </div>
@@ -113,14 +199,14 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ id }) => {
 
           {/* Sticky Sidebar (Contact CTA) */}
           <div className="lg:col-span-4">
-             <div className="sticky top-32 bg-stone-50 p-8 rounded-sm">
+             <div className="sticky top-32 bg-stone-50 p-8 rounded-sm border border-stone-100">
                <h3 className="font-serif text-xl text-stone-800 mb-4">Un projet similaire ?</h3>
                <p className="text-stone-600 font-light text-sm mb-6">
                  Vous avez un projet de rénovation ou de décoration ? Discutons-en ensemble.
                </p>
                <a 
                  href="#contact"
-                 className="block w-full text-center bg-sage-600 text-white text-xs uppercase tracking-widest py-3 px-6 hover:bg-sage-700 transition-colors rounded-sm"
+                 className="block w-full text-center bg-sage-600 text-white text-xs uppercase tracking-widest py-3 px-6 hover:bg-sage-700 transition-all duration-300 rounded-sm transform hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 active:shadow-sm"
                >
                  Contactez-nous
                </a>
@@ -136,8 +222,9 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ id }) => {
             {project.gallery.map((img, index) => (
               <div 
                 key={index} 
+                onClick={() => openLightbox(index)}
                 className={`
-                  relative overflow-hidden rounded-sm cursor-pointer group
+                  relative overflow-hidden rounded-sm cursor-zoom-in group shadow-sm hover:shadow-lg transition-shadow duration-300
                   ${index % 3 === 0 ? 'md:col-span-2 aspect-[16/9]' : 'aspect-[4/5]'}
                 `}
               >
@@ -146,6 +233,11 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ id }) => {
                   alt={`Vue ${index + 1} - ${project.title}`} 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
+                   <div className="bg-white/90 p-3 rounded-full opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                      <ZoomIn className="w-5 h-5 text-stone-800" />
+                   </div>
+                </div>
               </div>
             ))}
          </div>
@@ -158,15 +250,15 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ id }) => {
             href={`#project-${prevProject.id}`}
             className="group block p-8 md:p-12 hover:bg-stone-50 transition-colors text-right"
           >
-             <span className="block text-xs uppercase tracking-widest text-stone-400 mb-2 group-hover:text-sage-600">Projet Précédent</span>
-             <span className="font-serif text-lg md:text-2xl text-stone-800">{prevProject.title}</span>
+             <span className="block text-xs uppercase tracking-widest text-stone-400 mb-2 group-hover:text-sage-600 transition-colors">Projet Précédent</span>
+             <span className="font-serif text-lg md:text-2xl text-stone-800 group-hover:translate-x-1 inline-block transition-transform duration-300">{prevProject.title}</span>
           </a>
           <a 
             href={`#project-${nextProject.id}`}
             className="group block p-8 md:p-12 hover:bg-stone-50 transition-colors text-left"
           >
-             <span className="block text-xs uppercase tracking-widest text-stone-400 mb-2 group-hover:text-sage-600">Projet Suivant</span>
-             <span className="font-serif text-lg md:text-2xl text-stone-800">{nextProject.title}</span>
+             <span className="block text-xs uppercase tracking-widest text-stone-400 mb-2 group-hover:text-sage-600 transition-colors">Projet Suivant</span>
+             <span className="font-serif text-lg md:text-2xl text-stone-800 group-hover:-translate-x-1 inline-block transition-transform duration-300">{nextProject.title}</span>
           </a>
         </div>
       </div>

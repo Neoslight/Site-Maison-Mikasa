@@ -46,24 +46,24 @@ const Services: React.FC = () => {
 
               return (
                 <div key={item.id} className="flex flex-col items-center">
-                  <div className="mb-6 text-sage-600">
+                  <div className={`mb-6 text-sage-600 transition-transform duration-500 ${isOpen ? 'scale-110' : 'scale-100'}`}>
                     <Icon className="w-12 h-12" strokeWidth={1.5} />
                   </div>
                   
                   <button 
                     onClick={() => toggle(item.id)}
-                    className="w-full bg-white border border-gray-100 p-4 rounded-sm shadow-sm hover:shadow-md transition-all group relative overflow-hidden"
+                    className="w-full bg-white border border-gray-100 p-4 rounded-sm shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 group relative overflow-hidden"
                   >
                     <div className="flex items-center justify-between">
                       <span className="font-serif text-stone-800 text-sm md:text-base group-hover:text-sage-700 transition-colors">
                         {item.id}. {item.title}
                       </span>
-                      <div className={`transition-transform duration-300 ${isOpen ? 'rotate-180 text-sage-600' : 'text-stone-500'}`}>
+                      <div className={`transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${isOpen ? 'rotate-180 text-sage-600' : 'text-stone-500'}`}>
                         {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                       </div>
                     </div>
                     
-                    <div className={`grid transition-all duration-300 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100 mt-4' : 'grid-rows-[0fr] opacity-0'}`}>
+                    <div className={`grid transition-[grid-template-rows,opacity,padding] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${isOpen ? 'grid-rows-[1fr] opacity-100 mt-4' : 'grid-rows-[0fr] opacity-0 mt-0'}`}>
                        <div className="overflow-hidden">
                          <p className="text-left text-sm text-stone-700 font-light leading-relaxed">
                            {item.content}
@@ -83,13 +83,13 @@ const Services: React.FC = () => {
         <p className="text-stone-600 mb-12 italic font-serif">Découvrez les offres de Maison Mikasa :</p>
         
         <div className="flex flex-col md:flex-row justify-center gap-8 md:gap-16">
-          <a href="#prestations" className="group flex flex-col items-center p-8 border border-gray-100 hover:border-sage-200 hover:shadow-lg transition-all rounded-sm bg-white w-full md:w-64">
-            <span className="uppercase tracking-widest text-sm text-stone-700 group-hover:text-sage-700 mb-2">Architecture d'intérieur</span>
-            <ArrowRight className="w-4 h-4 text-gray-400 group-hover:translate-x-1 transition-transform" />
+          <a href="#prestations" className="group flex flex-col items-center p-8 border border-gray-100 hover:border-sage-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 rounded-sm bg-white w-full md:w-64">
+            <span className="uppercase tracking-widest text-sm text-stone-700 group-hover:text-sage-700 mb-2 transition-colors">Architecture d'intérieur</span>
+            <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-sage-500 group-hover:translate-x-1 transition-all duration-300" />
           </a>
-          <a href="#prestations" className="group flex flex-col items-center p-8 border border-gray-100 hover:border-sage-200 hover:shadow-lg transition-all rounded-sm bg-white w-full md:w-64">
-            <span className="uppercase tracking-widest text-sm text-stone-700 group-hover:text-sage-700 mb-2">Décoration d'intérieur</span>
-            <ArrowRight className="w-4 h-4 text-gray-400 group-hover:translate-x-1 transition-transform" />
+          <a href="#prestations" className="group flex flex-col items-center p-8 border border-gray-100 hover:border-sage-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 rounded-sm bg-white w-full md:w-64">
+            <span className="uppercase tracking-widest text-sm text-stone-700 group-hover:text-sage-700 mb-2 transition-colors">Décoration d'intérieur</span>
+            <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-sage-500 group-hover:translate-x-1 transition-all duration-300" />
           </a>
         </div>
       </Section>
@@ -117,8 +117,8 @@ const Services: React.FC = () => {
                           "Un intérieur unique qui reflète votre personnalité et vos besoins",
                           "Bien-être au quotidien : apaisement, clarté et confort de vie"
                       ].map((item, index) => (
-                          <li key={index} className="flex items-start">
-                              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-sage-200 flex items-center justify-center text-sage-700 mr-4 mt-0.5">
+                          <li key={index} className="flex items-start group">
+                              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-sage-200 flex items-center justify-center text-sage-700 mr-4 mt-0.5 group-hover:bg-sage-300 transition-colors duration-300">
                                   <Check className="w-3.5 h-3.5" strokeWidth={3} />
                               </span>
                               <span className="text-stone-700 font-light">{item}</span>

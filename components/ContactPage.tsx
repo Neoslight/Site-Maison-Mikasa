@@ -185,7 +185,7 @@ const ContactPage: React.FC = () => {
               <div className="pt-4">
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center w-full md:w-auto bg-sage-600 text-white px-8 py-4 uppercase tracking-widest text-xs font-bold hover:bg-sage-700 transition-all rounded-sm shadow-sm hover:shadow-md"
+                  className="inline-flex items-center justify-center w-full md:w-auto bg-sage-600 text-white px-8 py-4 uppercase tracking-widest text-xs font-bold transition-all duration-300 rounded-sm shadow-sm hover:bg-sage-700 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 active:shadow-sm"
                 >
                   Envoyer ma demande <Send className="w-4 h-4 ml-2" />
                 </button>

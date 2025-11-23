@@ -17,40 +17,42 @@ const App: React.FC = () => {
       setRoute(hash);
       
       const isInternalServiceLink = hash === '#architecture-interieure' || hash === '#decoration';
-      const isProject = hash.startsWith('#project-');
+      const isProjectDetail = hash.startsWith('#project-');
       
-      // Scroll to top for page transitions unless it's an internal anchor or project detail
-      if (
+      // Routes that act as "Pages" should scroll to top instantly
+      const isPageChange = 
         hash === '#about-page' || 
         hash === '#home' || 
         (hash.startsWith('#realisations') && !hash.includes('project-')) ||
         hash === '#prestations' ||
         hash === '#contact' ||
-        hash === ''
-      ) {
+        hash === '';
+
+      if (isPageChange) {
         window.scrollTo({ top: 0, behavior: 'auto' });
       } 
-      // Handle scrolling to internal anchors explicitly if needed after render
+      // Internal anchors or specific content
       else if (isInternalServiceLink) {
-         // Allow a small tick for the component to potentially mount/render if it wasn't there
          setTimeout(() => {
              const element = document.querySelector(hash);
              if (element) {
                  element.scrollIntoView({ behavior: 'smooth' });
              }
-         }, 100);
+         }, 50);
+      }
+      // Project Details should start at top
+      else if (isProjectDetail) {
+         window.scrollTo({ top: 0, behavior: 'auto' });
       }
     };
 
     // Handle initial load scroll
     if (window.location.hash) {
-       // Timeout to allow layout to settle
        setTimeout(() => {
-          // If accessing a specific section anchor directly on load
           if(!window.location.hash.startsWith('#project-')) {
              const element = document.querySelector(window.location.hash);
              if (element) {
-                element.scrollIntoView();
+                element.scrollIntoView({ behavior: 'smooth' });
              } else {
                  window.scrollTo(0, 0);
              }
@@ -77,7 +79,7 @@ const App: React.FC = () => {
     ContentComponent = <ProjectsPage initialType="Appartement" />;
   } else if (route === '#realisations-professionnel') {
     ContentComponent = <ProjectsPage initialType="Professionnel" />;
-  } else if (route === '#realisations' || route === '#projects') { // Keep old route as fallback
+  } else if (route === '#realisations' || route === '#projects') { 
     ContentComponent = <ProjectsPage initialType="Tous" />;
   } else if (route.startsWith('#project-')) {
     const projectId = route.replace('#project-', '');

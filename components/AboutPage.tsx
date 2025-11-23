@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Section from './Section';
 import { Heart, Ruler, Sparkles, MapPin, ArrowRight } from 'lucide-react';
@@ -120,7 +121,7 @@ const AboutPage: React.FC = () => {
             
             <a 
               href="#contact" 
-              className="inline-flex items-center text-xs uppercase tracking-widest font-bold border border-sage-500/50 hover:bg-sage-600 hover:border-sage-600 px-8 py-3 transition-all duration-300 rounded-sm"
+              className="inline-flex items-center text-xs uppercase tracking-widest font-bold border border-sage-500/50 hover:bg-sage-600 hover:border-sage-600 px-8 py-3 transition-all duration-300 rounded-sm transform hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 active:shadow-sm"
             >
               Discutons de votre projet <ArrowRight className="w-4 h-4 ml-2" />
             </a>
