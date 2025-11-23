@@ -31,6 +31,15 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({ initialType = 'Tous' }) => 
     }
   };
 
+  const getHash = (cat: ProjectType | 'Tous') => {
+    switch(cat) {
+      case 'Maison': return '#realisations-maison';
+      case 'Appartement': return '#realisations-appartement';
+      case 'Professionnel': return '#realisations-professionnel';
+      default: return '#realisations';
+    }
+  };
+
   return (
     <div className="bg-white min-h-screen">
       {/* Header */}
@@ -49,9 +58,9 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({ initialType = 'Tous' }) => 
         <div className="max-w-7xl mx-auto px-6 overflow-x-auto">
           <div className="flex justify-center space-x-2 md:space-x-6 min-w-max">
             {categories.map(cat => (
-              <button
+              <a
                 key={cat}
-                onClick={() => setFilter(cat)}
+                href={getHash(cat)}
                 className={`
                   text-xs uppercase tracking-widest px-4 py-2 rounded-sm transition-all duration-300
                   ${filter === cat 
@@ -61,7 +70,7 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({ initialType = 'Tous' }) => 
               >
                 {/* Display plural in filter buttons too for consistency */}
                 {cat === 'Tous' ? 'Tous' : cat === 'Professionnel' ? 'Professionnels' : cat + 's'}
-              </button>
+              </a>
             ))}
           </div>
         </div>

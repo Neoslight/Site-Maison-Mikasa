@@ -16,7 +16,10 @@ const App: React.FC = () => {
       const hash = window.location.hash;
       setRoute(hash);
       
-      // Scroll to top for page transitions unless it's an anchor on the same page (like #prestations-architecture)
+      const isInternalServiceLink = hash === '#architecture-interieure' || hash === '#decoration';
+      const isProject = hash.startsWith('#project-');
+      
+      // Scroll to top for page transitions unless it's an internal anchor or project detail
       if (
         hash === '#about-page' || 
         hash === '#home' || 
@@ -26,6 +29,16 @@ const App: React.FC = () => {
         hash === ''
       ) {
         window.scrollTo({ top: 0, behavior: 'auto' });
+      } 
+      // Handle scrolling to internal anchors explicitly if needed after render
+      else if (isInternalServiceLink) {
+         // Allow a small tick for the component to potentially mount/render if it wasn't there
+         setTimeout(() => {
+             const element = document.querySelector(hash);
+             if (element) {
+                 element.scrollIntoView({ behavior: 'smooth' });
+             }
+         }, 100);
       }
     };
 
@@ -56,7 +69,7 @@ const App: React.FC = () => {
   // Routing Logic
   if (route === '#about-page') {
     ContentComponent = <AboutPage />;
-  } else if (route === '#prestations') {
+  } else if (route === '#prestations' || route === '#architecture-interieure' || route === '#decoration') {
     ContentComponent = <ServicesPage />;
   } else if (route === '#realisations-maison') {
     ContentComponent = <ProjectsPage initialType="Maison" />;
@@ -72,7 +85,7 @@ const App: React.FC = () => {
   } else if (route === '#contact') {
     ContentComponent = <ContactPage />;
   } else {
-    // Default to Home for #home
+    // Default to Home for #home or undefined routes
     ContentComponent = <Home />;
   }
 
