@@ -1,12 +1,11 @@
-
 import React, { useState, useEffect } from 'react';
-import Layout from './components/Layout';
-import Home from './components/Home';
-import AboutPage from './components/AboutPage';
-import ProjectsPage from './components/ProjectsPage';
-import ProjectDetails from './components/ProjectDetails';
-import ServicesPage from './components/ServicesPage';
-import ContactPage from './components/ContactPage';
+import Layout from './components/layout/Layout';
+import Home from './pages/Home';
+import About from './pages/About';
+import Projects from './pages/Projects';
+import ProjectDetails from './pages/ProjectDetails';
+import Services from './pages/Services';
+import Contact from './pages/Contact';
 
 const App: React.FC = () => {
   const [route, setRoute] = useState(window.location.hash || '#home');
@@ -72,22 +71,22 @@ const App: React.FC = () => {
   
   // Routing Logic
   if (route === '#about-page') {
-    ContentComponent = <AboutPage />;
+    ContentComponent = <About />;
   } else if (route === '#prestations' || route === '#architecture-interieure' || route === '#decoration') {
-    ContentComponent = <ServicesPage />;
+    ContentComponent = <Services />;
   } else if (route === '#realisations-maison') {
-    ContentComponent = <ProjectsPage initialType="Maison" />;
+    ContentComponent = <Projects initialType="Maison" />;
   } else if (route === '#realisations-appartement') {
-    ContentComponent = <ProjectsPage initialType="Appartement" />;
+    ContentComponent = <Projects initialType="Appartement" />;
   } else if (route === '#realisations-professionnel') {
-    ContentComponent = <ProjectsPage initialType="Professionnel" />;
+    ContentComponent = <Projects initialType="Professionnel" />;
   } else if (route === '#realisations' || route === '#projects') { 
-    ContentComponent = <ProjectsPage initialType="Tous" />;
+    ContentComponent = <Projects initialType="Tous" />;
   } else if (route.startsWith('#project-')) {
     const projectId = route.replace('#project-', '');
     ContentComponent = <ProjectDetails id={projectId} />;
   } else if (route === '#contact') {
-    ContentComponent = <ContactPage />;
+    ContentComponent = <Contact />;
   } else {
     // Default to Home for #home or undefined routes
     ContentComponent = <Home />;
