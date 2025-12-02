@@ -33,7 +33,7 @@ const Services: React.FC = () => {
 
   return (
     <>
-      {/* 1. Promises Section (Moved to top) */}
+      {/* 1. Promises Section */}
       <Section id="promises" bgColor="bg-stone-50" className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="font-serif text-3xl text-stone-800 text-opacity-80">Les 3 promesses de Maison Mikasa</h2>
@@ -52,22 +52,27 @@ const Services: React.FC = () => {
                   
                   <button 
                     onClick={() => toggle(item.id)}
-                    className="w-full bg-white border border-gray-100 p-4 rounded-sm shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 group relative overflow-hidden"
+                    className="w-full bg-white border border-gray-100 p-6 rounded-sm shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="font-serif text-stone-800 text-sm md:text-base group-hover:text-sage-700 transition-colors">
-                        {item.id}. {item.title}
+                      <span className="font-serif text-stone-800 text-sm md:text-lg group-hover:text-sage-700 transition-colors">
+                        {item.title}
                       </span>
-                      <div className={`transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${isOpen ? 'rotate-180 text-sage-600' : 'text-stone-500'}`}>
-                        {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                      <div className={`transition-transform duration-500 ease-out ${isOpen ? 'rotate-180 text-sage-600' : 'text-stone-400'}`}>
+                        {isOpen ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
                       </div>
                     </div>
                     
-                    <div className={`grid transition-[grid-template-rows,opacity,padding] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${isOpen ? 'grid-rows-[1fr] opacity-100 mt-4' : 'grid-rows-[0fr] opacity-0 mt-0'}`}>
+                    {/* Smoother Accordion Animation */}
+                    <div 
+                      className={`grid transition-[grid-template-rows,opacity] duration-500 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
+                    >
                        <div className="overflow-hidden">
-                         <p className="text-left text-sm text-stone-700 font-light leading-relaxed">
-                           {item.content}
-                         </p>
+                         <div className="pt-4 mt-2 border-t border-dashed border-gray-100">
+                           <p className="text-left text-sm text-stone-600 font-light leading-relaxed">
+                             {item.content}
+                           </p>
+                         </div>
                        </div>
                     </div>
                   </button>
@@ -83,18 +88,18 @@ const Services: React.FC = () => {
         <p className="text-stone-600 mb-12 italic font-serif">Découvrez les offres de Maison Mikasa :</p>
         
         <div className="flex flex-col md:flex-row justify-center gap-8 md:gap-16">
-          <a href="#prestations" className="group flex flex-col items-center p-8 border border-gray-100 hover:border-sage-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 rounded-sm bg-white w-full md:w-64">
-            <span className="uppercase tracking-widest text-sm text-stone-700 group-hover:text-sage-700 mb-2 transition-colors">Architecture d'intérieur</span>
-            <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-sage-500 group-hover:translate-x-1 transition-all duration-300" />
+          <a href="#prestations" className="group flex flex-col items-center p-10 border border-gray-100 hover:border-sage-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 rounded-sm bg-white w-full md:w-72">
+            <span className="uppercase tracking-widest text-sm text-stone-700 group-hover:text-sage-700 mb-3 transition-colors font-semibold">Architecture d'intérieur</span>
+            <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-sage-500 group-hover:translate-x-2 transition-all duration-300" />
           </a>
-          <a href="#prestations" className="group flex flex-col items-center p-8 border border-gray-100 hover:border-sage-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 rounded-sm bg-white w-full md:w-64">
-            <span className="uppercase tracking-widest text-sm text-stone-700 group-hover:text-sage-700 mb-2 transition-colors">Décoration d'intérieur</span>
-            <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-sage-500 group-hover:translate-x-1 transition-all duration-300" />
+          <a href="#prestations" className="group flex flex-col items-center p-10 border border-gray-100 hover:border-sage-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 rounded-sm bg-white w-full md:w-72">
+            <span className="uppercase tracking-widest text-sm text-stone-700 group-hover:text-sage-700 mb-3 transition-colors font-semibold">Décoration d'intérieur</span>
+            <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-sage-500 group-hover:translate-x-2 transition-all duration-300" />
           </a>
         </div>
       </Section>
 
-      {/* 3. Why Us Section (Minus promises) */}
+      {/* 3. Why Us Section */}
       <Section id="why-us" bgColor="bg-stone-50" className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
              {/* Text Content */}
@@ -130,7 +135,7 @@ const Services: React.FC = () => {
 
              {/* Image */}
              <div className="order-1 lg:order-2">
-               <div className="relative aspect-[4/5] overflow-hidden rounded-sm shadow-lg group">
+               <div className="relative aspect-[4/5] overflow-hidden rounded-sm shadow-xl group">
                   <div className="absolute inset-0 border-[12px] border-white/30 z-10 pointer-events-none"></div>
                   <img 
                     src="https://picsum.photos/id/366/800/1000" 

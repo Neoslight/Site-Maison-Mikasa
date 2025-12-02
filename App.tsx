@@ -29,10 +29,12 @@ const App: React.FC = () => {
         hash === '';
 
       if (isPageChange) {
+        // Force scroll to top instantly for page changes
         window.scrollTo({ top: 0, behavior: 'auto' });
       } 
       // Internal anchors or specific content
       else if (isInternalServiceLink) {
+         // Allow the DOM to update first, then scroll smoothly
          setTimeout(() => {
              const element = document.querySelector(hash);
              if (element) {

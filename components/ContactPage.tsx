@@ -91,13 +91,13 @@ const ContactPage: React.FC = () => {
             <div>
               <h2 className="font-serif text-2xl text-stone-800 mb-6">Réseaux Sociaux</h2>
               <div className="flex space-x-4">
-                <a href="#" className="w-12 h-12 border border-gray-200 rounded-sm flex items-center justify-center text-stone-600 hover:text-sage-600 hover:border-sage-200 transition-all group">
+                <a href="#" className="w-12 h-12 border border-gray-200 rounded-sm flex items-center justify-center text-stone-600 hover:text-sage-600 hover:border-sage-200 transition-all group shadow-sm hover:shadow-md hover:-translate-y-0.5">
                   <Instagram className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 </a>
-                <a href="#" className="w-12 h-12 border border-gray-200 rounded-sm flex items-center justify-center text-stone-600 hover:text-sage-600 hover:border-sage-200 transition-all group">
+                <a href="#" className="w-12 h-12 border border-gray-200 rounded-sm flex items-center justify-center text-stone-600 hover:text-sage-600 hover:border-sage-200 transition-all group shadow-sm hover:shadow-md hover:-translate-y-0.5">
                   <Facebook className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 </a>
-                <a href="#" className="w-12 h-12 border border-gray-200 rounded-sm flex items-center justify-center text-stone-600 hover:text-sage-600 hover:border-sage-200 transition-all group">
+                <a href="#" className="w-12 h-12 border border-gray-200 rounded-sm flex items-center justify-center text-stone-600 hover:text-sage-600 hover:border-sage-200 transition-all group shadow-sm hover:shadow-md hover:-translate-y-0.5">
                   <Linkedin className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 </a>
               </div>
@@ -105,7 +105,7 @@ const ContactPage: React.FC = () => {
           </div>
 
           {/* Formulaire (Droite) */}
-          <div className="lg:col-span-7 bg-stone-50 p-8 md:p-12 rounded-sm">
+          <div className="lg:col-span-7 bg-stone-50 p-8 md:p-12 rounded-sm shadow-sm">
             <h2 className="font-serif text-2xl text-stone-800 mb-8">Envoyez-nous un message</h2>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -118,7 +118,7 @@ const ContactPage: React.FC = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full bg-white border border-gray-200 px-4 py-3 text-stone-800 focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 transition-colors rounded-sm"
+                    className="w-full bg-white border border-gray-200 px-4 py-3 text-stone-800 focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 transition-colors rounded-sm shadow-sm"
                     placeholder="Votre nom"
                   />
                 </div>
@@ -130,7 +130,7 @@ const ContactPage: React.FC = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full bg-white border border-gray-200 px-4 py-3 text-stone-800 focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 transition-colors rounded-sm"
+                    className="w-full bg-white border border-gray-200 px-4 py-3 text-stone-800 focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 transition-colors rounded-sm shadow-sm"
                     placeholder="Votre numéro"
                   />
                 </div>
@@ -145,7 +145,7 @@ const ContactPage: React.FC = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full bg-white border border-gray-200 px-4 py-3 text-stone-800 focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 transition-colors rounded-sm"
+                  className="w-full bg-white border border-gray-200 px-4 py-3 text-stone-800 focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 transition-colors rounded-sm shadow-sm"
                   placeholder="votre@email.com"
                 />
               </div>
@@ -157,7 +157,7 @@ const ContactPage: React.FC = () => {
                   name="projectType"
                   value={formData.projectType}
                   onChange={handleChange}
-                  className="w-full bg-white border border-gray-200 px-4 py-3 text-stone-800 focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 transition-colors rounded-sm appearance-none"
+                  className="w-full bg-white border border-gray-200 px-4 py-3 text-stone-800 focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 transition-colors rounded-sm appearance-none shadow-sm"
                 >
                   <option value="" disabled>Sélectionnez une option</option>
                   <option value="Rénovation complète">Rénovation complète</option>
@@ -177,7 +177,7 @@ const ContactPage: React.FC = () => {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full bg-white border border-gray-200 px-4 py-3 text-stone-800 focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 transition-colors rounded-sm resize-none"
+                  className="w-full bg-white border border-gray-200 px-4 py-3 text-stone-800 focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 transition-colors rounded-sm resize-none shadow-sm"
                   placeholder="Racontez-moi votre projet..."
                 ></textarea>
               </div>
@@ -185,7 +185,7 @@ const ContactPage: React.FC = () => {
               <div className="pt-4">
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center w-full md:w-auto bg-sage-600 text-white px-8 py-4 uppercase tracking-widest text-xs font-bold transition-all duration-300 rounded-sm shadow-sm hover:bg-sage-700 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 active:shadow-sm"
+                  className="inline-flex items-center justify-center w-full md:w-auto bg-sage-600 text-white px-10 py-4 uppercase tracking-widest text-xs font-bold transition-all duration-300 rounded-sm shadow-md hover:bg-sage-700 hover:-translate-y-1 hover:shadow-xl active:translate-y-0 active:shadow-sm"
                 >
                   Envoyer ma demande <Send className="w-4 h-4 ml-2" />
                 </button>

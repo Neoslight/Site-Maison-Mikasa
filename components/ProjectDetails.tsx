@@ -1,7 +1,8 @@
-import React, { useEffect, useState, useCallback } from 'react';
+
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import Section from './Section';
 import { projectsData } from '../projectsData';
-import { ArrowLeft, ArrowRight, Calendar, MapPin, Ruler, Clock, X, ZoomIn, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Calendar, MapPin, Ruler, Clock, X, ZoomIn, ZoomOut, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface ProjectDetailsProps {
   id: string;
@@ -11,6 +12,9 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ id }) => {
   const project = projectsData.find(p => p.id === id);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
+  const [isZoomed, setIsZoomed] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const imageRef = useRef<HTMLImageElement>(null);
 
   // Navigation Logic
   const currentIndex = projectsData.findIndex(p => p.id === id);
@@ -26,25 +30,45 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ id }) => {
   const openLightbox = (index: number) => {
     setPhotoIndex(index);
     setLightboxOpen(true);
+    setIsZoomed(false);
     document.body.style.overflow = 'hidden'; // Prevent background scrolling
   };
 
-  const closeLightbox = () => {
+  const closeLightbox = useCallback(() => {
     setLightboxOpen(false);
+    setIsZoomed(false);
     document.body.style.overflow = 'auto';
-  };
+  }, []);
 
   const nextPhoto = useCallback((e?: React.MouseEvent) => {
     e?.stopPropagation();
     if (!project) return;
+    setIsZoomed(false);
     setPhotoIndex((prev) => (prev + 1) % project.gallery.length);
   }, [project]);
 
   const prevPhoto = useCallback((e?: React.MouseEvent) => {
     e?.stopPropagation();
     if (!project) return;
+    setIsZoomed(false);
     setPhotoIndex((prev) => (prev - 1 + project.gallery.length) % project.gallery.length);
   }, [project]);
+
+  const toggleZoom = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsZoomed(!isZoomed);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isZoomed || !imageRef.current) return;
+    
+    // Calculate mouse position relative to the image container
+    const { left, top, width, height } = imageRef.current.getBoundingClientRect();
+    const x = ((e.clientX - left) / width) * 100;
+    const y = ((e.clientY - top) / height) * 100;
+    
+    setMousePos({ x, y });
+  };
 
   // Keyboard navigation for Lightbox
   useEffect(() => {
@@ -52,13 +76,15 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ id }) => {
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowRight') nextPhoto();
-      if (e.key === 'ArrowLeft') prevPhoto();
+      if (!isZoomed) { // Only navigate if not zoomed to avoid conflict
+        if (e.key === 'ArrowRight') nextPhoto();
+        if (e.key === 'ArrowLeft') prevPhoto();
+      }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [lightboxOpen, nextPhoto, prevPhoto]);
+  }, [lightboxOpen, isZoomed, nextPhoto, prevPhoto, closeLightbox]);
 
   if (!project) {
     return <div className="min-h-screen flex items-center justify-center">Projet introuvable</div>;
@@ -69,51 +95,78 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ id }) => {
       {/* Lightbox Overlay */}
       {lightboxOpen && (
         <div 
-          className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm flex items-center justify-center transition-opacity duration-300"
+          className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm flex items-center justify-center transition-opacity duration-300 animate-in fade-in"
           onClick={closeLightbox}
         >
-          {/* Controls */}
-          <button 
-            className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors p-2 z-50"
-            onClick={closeLightbox}
-          >
-            <X className="w-8 h-8" />
-          </button>
+          {/* Top Controls */}
+          <div className="absolute top-0 left-0 right-0 p-6 flex justify-between items-center z-50 pointer-events-none">
+             <div className="text-white/80 text-sm font-medium tracking-widest pointer-events-auto bg-black/20 px-4 py-2 rounded-full backdrop-blur-md">
+               {photoIndex + 1} / {project.gallery.length}
+             </div>
+             <button 
+               className="text-white/70 hover:text-white hover:bg-white/10 p-2 rounded-full transition-all pointer-events-auto"
+               onClick={closeLightbox}
+               aria-label="Fermer"
+             >
+               <X className="w-8 h-8" />
+             </button>
+          </div>
 
-          <button 
-            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors p-4 z-50 hover:bg-white/10 rounded-full"
-            onClick={prevPhoto}
-          >
-            <ChevronLeft className="w-8 h-8 md:w-10 md:h-10" />
-          </button>
+          {/* Navigation Buttons (Hidden if zoomed to prevent accidental clicks) */}
+          {!isZoomed && (
+            <>
+              <button 
+                className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-all p-4 z-50 hover:bg-white/10 rounded-full group"
+                onClick={prevPhoto}
+                aria-label="Image précédente"
+              >
+                <ChevronLeft className="w-8 h-8 md:w-10 md:h-10 group-hover:-translate-x-1 transition-transform" />
+              </button>
 
-          <button 
-            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors p-4 z-50 hover:bg-white/10 rounded-full"
-            onClick={nextPhoto}
-          >
-            <ChevronRight className="w-8 h-8 md:w-10 md:h-10" />
-          </button>
+              <button 
+                className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-all p-4 z-50 hover:bg-white/10 rounded-full group"
+                onClick={nextPhoto}
+                aria-label="Image suivante"
+              >
+                <ChevronRight className="w-8 h-8 md:w-10 md:h-10 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </>
+          )}
 
-          {/* Image */}
+          {/* Image Container */}
           <div 
-            className="relative max-w-[90vw] max-h-[90vh] w-full h-full flex items-center justify-center"
-            onClick={(e) => e.stopPropagation()} 
+            className={`
+              relative w-full h-full flex items-center justify-center p-4 md:p-12 transition-all duration-300
+              ${isZoomed ? 'cursor-zoom-out' : 'cursor-zoom-in'}
+            `}
+            onClick={toggleZoom}
+            onMouseMove={handleMouseMove}
           >
             <img 
+              ref={imageRef}
               src={project.gallery[photoIndex]} 
               alt={`Vue ${photoIndex + 1}`}
-              className="max-w-full max-h-full object-contain shadow-2xl"
+              className="max-w-full max-h-full object-contain transition-transform duration-200 ease-out shadow-2xl"
+              style={isZoomed ? {
+                transform: 'scale(2.5)',
+                transformOrigin: `${mousePos.x}% ${mousePos.y}%`
+              } : {
+                transform: 'scale(1)',
+                transformOrigin: 'center'
+              }}
             />
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/60 text-xs uppercase tracking-widest font-medium">
-               {photoIndex + 1} / {project.gallery.length}
-            </div>
+          </div>
+          
+          {/* Mobile Hint */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/40 text-[10px] uppercase tracking-widest md:hidden pointer-events-none">
+            {isZoomed ? 'Glisser pour explorer' : 'Toucher pour zoomer'}
           </div>
         </div>
       )}
 
       {/* Back Button */}
       <div className="fixed top-24 left-6 z-40 hidden xl:block">
-        <a href="#realisations" className="flex items-center text-xs uppercase tracking-widest text-stone-500 hover:text-sage-600 transition-colors bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-gray-100 hover:shadow-md">
+        <a href="#realisations" className="flex items-center text-xs uppercase tracking-widest text-stone-500 hover:text-sage-600 transition-all bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-gray-100 hover:shadow-md hover:-translate-x-1">
           <ArrowLeft className="w-3 h-3 mr-2" /> Retour aux réalisations
         </a>
       </div>
@@ -123,13 +176,13 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ id }) => {
         <img 
           src={project.coverImage} 
           alt={project.title} 
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover animate-in fade-in duration-700"
         />
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center text-white px-4 fade-in-section is-visible">
             <span className="uppercase tracking-[0.2em] text-sm md:text-base font-medium mb-4 block opacity-90">{project.category}</span>
-            <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl mb-6">{project.title}</h1>
+            <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl mb-6 shadow-sm">{project.title}</h1>
             <div className="flex items-center justify-center space-x-2 text-sm md:text-base font-light opacity-90">
                <MapPin className="w-4 h-4" /> 
                <span>{project.location}</span>
@@ -206,7 +259,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ id }) => {
                </p>
                <a 
                  href="#contact"
-                 className="block w-full text-center bg-sage-600 text-white text-xs uppercase tracking-widest py-3 px-6 hover:bg-sage-700 transition-all duration-300 rounded-sm transform hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 active:shadow-sm"
+                 className="block w-full text-center bg-sage-600 text-white text-xs uppercase tracking-widest py-3 px-6 hover:bg-sage-700 transition-all duration-300 rounded-sm hover:-translate-y-1 hover:shadow-lg active:translate-y-0 shadow-sm"
                >
                  Contactez-nous
                </a>
@@ -224,7 +277,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ id }) => {
                 key={index} 
                 onClick={() => openLightbox(index)}
                 className={`
-                  relative overflow-hidden rounded-sm cursor-zoom-in group shadow-sm hover:shadow-lg transition-shadow duration-300
+                  relative overflow-hidden rounded-sm cursor-zoom-in group shadow-sm hover:shadow-xl transition-all duration-500
                   ${index % 3 === 0 ? 'md:col-span-2 aspect-[16/9]' : 'aspect-[4/5]'}
                 `}
               >
@@ -233,9 +286,12 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ id }) => {
                   alt={`Vue ${index + 1} - ${project.title}`} 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
-                   <div className="bg-white/90 p-3 rounded-full opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                      <ZoomIn className="w-5 h-5 text-stone-800" />
+                
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/20 transition-colors duration-300 flex items-center justify-center">
+                   <div className="bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full opacity-0 translate-y-4 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 flex items-center shadow-lg">
+                      <ZoomIn className="w-4 h-4 text-stone-800 mr-2" />
+                      <span className="text-xs uppercase tracking-widest text-stone-800 font-bold">Agrandir</span>
                    </div>
                 </div>
               </div>
