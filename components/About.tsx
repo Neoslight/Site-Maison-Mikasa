@@ -29,16 +29,16 @@ const About: React.FC = () => {
           </div>
 
           <p>
-            Originaire de Baden, j’ai un lien particulier avec les maisons du <strong className="font-medium text-stone-900">Golfe du Morbihan</strong>. C’est ici que j’ai choisi de fonder <strong className="font-medium text-stone-900">Maison Mikasa</strong>, avec une conviction toute simple : votre maison ne doit pas seulement être "jolie", elle doit être votre véritable <strong className="font-medium text-stone-900">refuge</strong>.
+            Originaire de Baden, j’ai un lien particulier avec les maisons du Golfe du Morbihan. C’est ici que j’ai choisi de fonder Maison Mikasa, avec une conviction toute simple : votre maison ne doit pas seulement être "jolie", elle doit être votre véritable refuge.
           </p>
           <p>
-            Ce qui me passionne, c’est de voir au-delà des murs. Rien ne me fascine plus que de déceler le <strong className="font-medium text-stone-900">potentiel caché</strong> d'un bâtiment pour le transformer en un lieu qui vous ressemble enfin : un intérieur à la fois chaleureux et vraiment fonctionnel.
+            Ce qui me passionne, c’est de voir au-delà des murs. Rien ne me fascine plus que de déceler le potentiel caché d'un bâtiment pour le transformer en un lieu qui vous ressemble enfin : un intérieur à la fois chaleureux et vraiment fonctionnel.
           </p>
           <p>
-            Mon approche privilégie l’<strong className="font-medium text-stone-900">intelligence des volumes</strong> et l’optimisation de chaque mètre carré. Plutôt que d'imposer un style figé, je cherche à révéler l'âme de vos espaces en m’imprégnant de votre façon de vivre. Mon métier, c'est de trouver cet équilibre subtil entre le cachet de l’ancien et le confort du moderne.
+            Mon approche privilégie l’intelligence des volumes et l’optimisation de chaque mètre carré. Plutôt que d'imposer un style figé, je cherche à révéler l'âme de vos espaces en m’imprégnant de votre façon de vivre. Mon métier, c'est de trouver cet équilibre subtil entre le cachet de l’ancien et le confort du moderne.
           </p>
           <p>
-            Je suis aussi là pour vous apporter de la <strong className="font-medium text-stone-900">sérénité</strong>. Je gère toute la complexité technique pour que vous n'ayez qu'à vous concentrer sur l'essentiel : vous projeter dans votre futur chez-vous. Ensemble, nous créons un environnement fluide et ressourçant, un lieu qui vit avec vous et <strong className="font-medium text-stone-900">simplifie votre quotidien</strong>.
+            Je suis aussi là pour vous apporter de la sérénité. Je gère toute la complexité technique pour que vous n'ayez qu'à vous concentrer sur l'essentiel : vous projeter dans votre futur chez-vous. Ensemble, nous créons un environnement fluide et ressourçant, un lieu qui vit avec vous et simplifie votre quotidien.
           </p>
 
           <div className="pt-6">

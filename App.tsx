@@ -20,11 +20,11 @@ const App: React.FC = () => {
       
       // Routes that act as "Pages" should scroll to top instantly
       const isPageChange = 
-        hash === '#about-page' || 
-        hash === '#home' || 
+        hash.startsWith('#about-page') || 
+        hash.startsWith('#home') || 
         (hash.startsWith('#realisations') && !hash.includes('project-')) ||
-        hash === '#prestations' ||
-        hash === '#contact' ||
+        hash.startsWith('#prestations') ||
+        hash.startsWith('#contact') ||
         hash === '';
 
       if (isPageChange) {
@@ -70,22 +70,22 @@ const App: React.FC = () => {
   let ContentComponent;
   
   // Routing Logic
-  if (route === '#about-page') {
+  if (route.startsWith('#about-page')) {
     ContentComponent = <About />;
-  } else if (route === '#prestations' || route === '#architecture-interieure' || route === '#decoration') {
+  } else if (route.startsWith('#prestations') || route.startsWith('#architecture-interieure') || route.startsWith('#decoration')) {
     ContentComponent = <Services />;
-  } else if (route === '#realisations-maison') {
+  } else if (route.startsWith('#realisations-maison')) {
     ContentComponent = <Projects initialType="Maison" />;
-  } else if (route === '#realisations-appartement') {
+  } else if (route.startsWith('#realisations-appartement')) {
     ContentComponent = <Projects initialType="Appartement" />;
-  } else if (route === '#realisations-professionnel') {
+  } else if (route.startsWith('#realisations-professionnel')) {
     ContentComponent = <Projects initialType="Professionnel" />;
-  } else if (route === '#realisations' || route === '#projects') { 
+  } else if (route.startsWith('#realisations') || route.startsWith('#projects')) { 
     ContentComponent = <Projects initialType="Tous" />;
   } else if (route.startsWith('#project-')) {
-    const projectId = route.replace('#project-', '');
+    const projectId = route.replace('#project-', '').split('?')[0]; // Strip params for finding project
     ContentComponent = <ProjectDetails id={projectId} />;
-  } else if (route === '#contact') {
+  } else if (route.startsWith('#contact')) {
     ContentComponent = <Contact />;
   } else {
     // Default to Home for #home or undefined routes

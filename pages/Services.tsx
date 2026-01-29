@@ -7,9 +7,6 @@ import {
   FileText, 
   ArrowRight, 
   CheckCircle2, 
-  MapPin, 
-  Clock, 
-  Euro,
   PenTool,
   LayoutTemplate,
   HardHat,
@@ -21,19 +18,17 @@ const Services: React.FC = () => {
   return (
     <div className="bg-white">
       {/* Hero Header */}
-      <Section bgColor="bg-stone-50" className="text-center" py="py-20 md:py-28">
-        <div className="max-w-5xl mx-auto px-6">
-          <span className="text-sage-600 uppercase tracking-widest text-xs font-bold mb-6 block">Offres & Services</span>
+      <Section bgColor="bg-stone-50" className="text-center" py="py-20 md:py-32">
+        <div className="max-w-4xl mx-auto px-6">
+          <span className="text-sage-600 uppercase tracking-widest text-[10px] font-bold mb-6 block">Offres & Services</span>
           <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-stone-800 mb-10">Mes prestations</h1>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 text-left">
-            <p className="text-stone-700 font-serif italic text-lg md:text-xl leading-relaxed border-l-2 border-sage-200 pl-6">
-              De l’analyse de potentiel à la gestion complète de vos travaux, j’imagine des espaces où l’esthétique rencontre le bien-être. J’accompagne les propriétaires du Golfe du Morbihan à révéler la valeur de leurs biens à travers des agencements chaleureux et fonctionnels qui apaisent votre esprit et améliorent durablement votre quotidien.
-            </p>
-            <p className="text-stone-600 font-light leading-relaxed text-base">
-              De la première intuition sur le potentiel de votre bien jusqu’au suivi complet de vos travaux, je suis à vos côtés à chaque étape. Mon rôle est de dessiner des intérieurs où le beau se met vraiment au service du bien-être. En repensant vos espaces pour les rendre plus fluides et chaleureux, je valorise votre patrimoine tout en créant un cadre de vie qui, chaque jour, apaise l’esprit et simplifie durablement votre quotidien.
+          <div className="flex justify-center">
+            <p className="text-stone-700 font-serif italic text-lg md:text-2xl leading-relaxed max-w-3xl">
+              De l’analyse de potentiel au suivi complet de vos travaux, j’imagine des espaces fluides où l’esthétique se met au service de votre bien-être pour valoriser durablement votre patrimoine et simplifier votre quotidien.
             </p>
           </div>
+          <div className="w-12 h-px bg-sage-300 mx-auto mt-12"></div>
         </div>
       </Section>
 
@@ -79,7 +74,7 @@ const Services: React.FC = () => {
                 <Info className="w-3.5 h-3.5 text-sage-600 mr-2 flex-shrink-0 mt-0.5" />
                 <p className="text-[10px] text-sage-700 leading-tight">Détail : Ce montant est intégralement déduit si nous poursuivons sur une conception complète.</p>
               </div>
-              <a href="#contact" className="block w-full text-center bg-stone-800 text-white text-[10px] uppercase tracking-widest font-bold py-4 hover:bg-sage-600 transition-colors rounded-sm shadow-sm">
+              <a href="#contact?service=conseil" className="block w-full text-center bg-stone-800 text-white text-[10px] uppercase tracking-widest font-bold py-4 hover:bg-sage-600 transition-colors rounded-sm shadow-sm">
                 Réserver mon rendez-vous
               </a>
             </div>
@@ -120,7 +115,7 @@ const Services: React.FC = () => {
                 <span className="text-xs uppercase tracking-widest text-stone-400 font-bold">Tarif</span>
                 <span className="font-serif text-xl text-stone-800">Dès 1 600 € <span className="text-xs font-sans text-stone-500">/ pièce</span></span>
               </div>
-              <a href="#contact" className="block w-full text-center bg-sage-600 text-white text-[10px] uppercase tracking-widest font-bold py-4 hover:bg-sage-700 transition-colors rounded-sm shadow-sm">
+              <a href="#contact?service=principale" className="block w-full text-center bg-sage-600 text-white text-[10px] uppercase tracking-widest font-bold py-4 hover:bg-sage-700 transition-colors rounded-sm shadow-sm">
                 Demander un devis
               </a>
             </div>
@@ -160,7 +155,7 @@ const Services: React.FC = () => {
                 <span className="text-xs uppercase tracking-widest text-stone-400 font-bold">Tarif</span>
                 <span className="font-serif text-xl text-stone-800">Sur Devis</span>
               </div>
-              <a href="#contact" className="block w-full text-center bg-stone-800 text-white text-[10px] uppercase tracking-widest font-bold py-4 hover:bg-sage-600 transition-colors rounded-sm shadow-sm">
+              <a href="#contact?service=secondaire" className="block w-full text-center bg-stone-800 text-white text-[10px] uppercase tracking-widest font-bold py-4 hover:bg-sage-600 transition-colors rounded-sm shadow-sm">
                 Discuter de mon projet
               </a>
             </div>
@@ -200,7 +195,7 @@ const Services: React.FC = () => {
                 <span className="text-xs uppercase tracking-widest text-stone-400 font-bold">Tarif</span>
                 <span className="font-serif text-xl text-stone-800">Dès 600 €</span>
               </div>
-              <a href="#contact" className="block w-full text-center bg-stone-300 text-stone-800 text-[10px] uppercase tracking-widest font-bold py-4 hover:bg-sage-600 hover:text-white transition-all rounded-sm shadow-sm">
+              <a href="#contact?service=mairie" className="block w-full text-center bg-stone-300 text-stone-800 text-[10px] uppercase tracking-widest font-bold py-4 hover:bg-sage-600 hover:text-white transition-all rounded-sm shadow-sm">
                 Confier mon dossier
               </a>
             </div>

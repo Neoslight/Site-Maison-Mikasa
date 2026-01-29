@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Section from './Section';
 import { Heart, Ruler, Sparkles, MapPin, ArrowRight } from 'lucide-react';
@@ -41,13 +40,16 @@ const AboutPage: React.FC = () => {
             </div>
             
             <p className="pt-4">
-              Originaire de <strong>Baden</strong>, dans le Golfe du Morbihan, j'ai grandi entre terre et mer, bercée par des paysages authentiques qui inspirent aujourd'hui mon travail au quotidien.
+              Originaire de Baden, j’ai un lien particulier avec les maisons du <strong className="font-medium text-stone-900">Golfe du Morbihan</strong>. C’est ici que j’ai choisi de fonder <strong className="font-medium text-stone-900">Maison Mikasa</strong>, avec une conviction toute simple : votre maison ne doit pas seulement être "jolie", elle doit être votre véritable <strong className="font-medium text-stone-900">refuge</strong>.
             </p>
             <p>
-              Après plusieurs années d'expérience dans l'agencement et la décoration, j'ai fondé <strong>Maison Mikasa</strong> avec une conviction forte : votre maison ne doit pas seulement être belle, elle doit être votre refuge absolu. Un lieu qui vous ressemble, qui vit avec vous, et qui traverse le temps sans prendre une ride.
+              Ce qui me passionne, c’est de voir au-delà des murs. Rien ne me fascine plus que de déceler le <strong className="font-medium text-stone-900">potentiel caché</strong> d'un bâtiment pour le transformer en un lieu qui vous ressemble enfin : un intérieur à la fois chaleureux et vraiment fonctionnel.
             </p>
             <p>
-              Mon approche est celle de l'<strong>écoute active</strong>. Je ne plaque pas un "style prédéfini" sur votre intérieur ; je révèle son potentiel en fonction de <strong>votre</strong> mode de vie. J'aime les matériaux bruts, les lumières douces, et l'ingéniosité des espaces bien pensés.
+              Mon approche privilégie l’<strong className="font-medium text-stone-900">intelligence des volumes</strong> et l’optimisation de chaque mètre carré. Plutôt que d'imposer un style figé, je cherche à révéler l'âme de vos espaces en m’imprégnant de votre façon de vivre. Mon métier, c'est de trouver cet équilibre subtil entre le cachet de l’ancien et le confort du moderne.
+            </p>
+            <p>
+              Je suis aussi là pour vous apporter de la <strong className="font-medium text-stone-900">sérénité</strong>. Je gère toute la complexité technique pour que vous n'ayez qu'à vous concentrer sur l'essentiel : vous projeter dans votre futur chez-vous. Ensemble, nous créons un environnement fluide et ressourçant, un lieu qui vit avec vous et <strong className="font-medium text-stone-900">simplifie votre quotidien</strong>.
             </p>
             
             <div className="flex items-center space-x-3 text-sage-700 pt-6 font-medium text-sm bg-stone-50 p-4 rounded-sm border border-stone-100">
@@ -68,66 +70,39 @@ const AboutPage: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
            {/* Value 1 */}
            <div className="bg-white p-8 rounded-sm shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center group">
-              <div className="w-14 h-14 mx-auto bg-sage-50 rounded-full flex items-center justify-center text-sage-600 mb-6 group-hover:bg-sage-100 transition-colors">
-                <Heart className="w-7 h-7" strokeWidth={1.5} />
-              </div>
-              <h3 className="font-serif text-xl text-stone-800 mb-4">Empathie & Écoute</h3>
-              <p className="text-stone-600 font-light text-sm leading-relaxed">
-                Chaque projet commence par une rencontre humaine. Je prends le temps de comprendre vos habitudes, vos goûts et vos contraintes pour créer un lieu qui vous correspond vraiment.
-              </p>
+             <div className="w-14 h-14 mx-auto bg-sage-50 rounded-full flex items-center justify-center text-sage-600 mb-6 group-hover:bg-sage-100 transition-colors">
+               <Heart className="w-7 h-7" strokeWidth={1.5} />
+             </div>
+             <h3 className="font-serif text-xl text-stone-800 mb-4">Empathie & Écoute</h3>
+             <p className="text-stone-600 font-light text-sm leading-relaxed">
+               Chaque projet commence par une rencontre humaine. Je prends le temps de comprendre vos habitudes, vos goûts et vos contraintes pour créer un lieu qui vous correspond vraiment.
+             </p>
            </div>
            
            {/* Value 2 */}
            <div className="bg-white p-8 rounded-sm shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center group">
-              <div className="w-14 h-14 mx-auto bg-sage-50 rounded-full flex items-center justify-center text-sage-600 mb-6 group-hover:bg-sage-100 transition-colors">
-                <Ruler className="w-7 h-7" strokeWidth={1.5} />
-              </div>
-              <h3 className="font-serif text-xl text-stone-800 mb-4">Fonctionnalité</h3>
-              <p className="text-stone-600 font-light text-sm leading-relaxed">
-                Le beau n'est rien sans l'utile. J'optimise chaque mètre carré pour fluidifier la circulation, maximiser les rangements et simplifier votre quotidien pour alléger votre charge mentale.
-              </p>
+             <div className="w-14 h-14 mx-auto bg-sage-50 rounded-full flex items-center justify-center text-sage-600 mb-6 group-hover:bg-sage-100 transition-colors">
+               <Ruler className="w-7 h-7" strokeWidth={1.5} />
+             </div>
+             <h3 className="font-serif text-xl text-stone-800 mb-4">Fonctionnalité</h3>
+             <p className="text-stone-600 font-light text-sm leading-relaxed">
+               Le beau n'est rien sans l'utile. J'optimise chaque mètre carré pour fluidifier la circulation, maximiser les rangements et simplifier votre quotidien pour alléger votre charge mentale.
+             </p>
            </div>
 
            {/* Value 3 */}
            <div className="bg-white p-8 rounded-sm shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center group">
-              <div className="w-14 h-14 mx-auto bg-sage-50 rounded-full flex items-center justify-center text-sage-600 mb-6 group-hover:bg-sage-100 transition-colors">
-                <Sparkles className="w-7 h-7" strokeWidth={1.5} />
-              </div>
-              <h3 className="font-serif text-xl text-stone-800 mb-4">Durabilité</h3>
-              <p className="text-stone-600 font-light text-sm leading-relaxed">
-                Je privilégie les matériaux naturels, le mobilier de qualité et les artisans locaux. Rénover, c'est aussi s'engager pour un habitat plus sain, pérenne et respectueux de l'environnement.
-              </p>
+             <div className="w-14 h-14 mx-auto bg-sage-50 rounded-full flex items-center justify-center text-sage-600 mb-6 group-hover:bg-sage-100 transition-colors">
+               <Sparkles className="w-7 h-7" strokeWidth={1.5} />
+             </div>
+             <h3 className="font-serif text-xl text-stone-800 mb-4">Durabilité</h3>
+             <p className="text-stone-600 font-light text-sm leading-relaxed">
+               Je privilégie les matériaux naturels, le mobilier de qualité et les artisans locaux. Rénover, c'est aussi s'engager pour un habitat plus sain, pérenne et respectueux de l'environnement.
+             </p>
            </div>
         </div>
       </Section>
 
-      {/* Why "Mikasa" ? */}
-      <Section className="max-w-5xl mx-auto px-6">
-        <div className="bg-stone-800 text-white rounded-sm p-8 md:p-16 text-center relative overflow-hidden shadow-2xl">
-          {/* Decorative circles */}
-          <div className="absolute top-0 left-0 w-32 h-32 bg-white opacity-5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
-          <div className="absolute bottom-0 right-0 w-48 h-48 bg-sage-500 opacity-10 rounded-full translate-x-1/3 translate-y-1/3"></div>
-
-          <div className="relative z-10">
-            <h2 className="font-serif text-3xl mb-6">Pourquoi "Maison Mikasa" ?</h2>
-            <div className="w-16 h-0.5 bg-sage-500 mx-auto mb-8"></div>
-            
-            <p className="text-stone-200 font-light leading-relaxed mb-8 text-lg max-w-3xl mx-auto">
-              Un clin d'œil à l'espagnol <strong>"Mi Casa"</strong> (ma maison), pour l'accueil et la chaleur latine, teinté d'une sonorité japonaise évoquant l'épure, la rigueur et l'harmonie zen.
-            </p>
-            <p className="text-stone-300 font-light text-base mb-10 max-w-2xl mx-auto">
-              C'est cette double identité que je souhaite apporter chez vous : un cocon chaleureux et vivant, pensé avec l'exigence de la simplicité.
-            </p>
-            
-            <a 
-              href="#contact" 
-              className="inline-flex items-center text-xs uppercase tracking-widest font-bold border border-sage-500/50 hover:bg-sage-600 hover:border-sage-600 px-8 py-4 transition-all duration-300 rounded-sm transform hover:-translate-y-1 hover:shadow-xl active:translate-y-0 active:shadow-sm"
-            >
-              Discutons de votre projet <ArrowRight className="w-4 h-4 ml-2" />
-            </a>
-          </div>
-        </div>
-      </Section>
     </div>
   );
 };

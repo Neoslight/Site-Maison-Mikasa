@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Section from '../components/ui/Section';
 import { Mail, Phone, MapPin, Send, Instagram, Linkedin, Facebook, Clock } from 'lucide-react';
 
@@ -11,6 +11,36 @@ const Contact: React.FC = () => {
     message: ''
   });
 
+  // Détection du service dans l'URL pour pré-remplir le champ "Type de projet"
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash.includes('?service=')) {
+      const serviceParam = hash.split('?service=')[1];
+      let selectedService = '';
+      
+      switch(serviceParam) {
+        case 'conseil':
+          selectedService = 'Le Rendez-vous Conseil';
+          break;
+        case 'principale':
+          selectedService = 'Rénovation Résidence Principale';
+          break;
+        case 'secondaire':
+          selectedService = 'Rénovation Résidence Secondaire';
+          break;
+        case 'mairie':
+          selectedService = 'Dossier Mairie - Déclaration';
+          break;
+        default:
+          selectedService = '';
+      }
+      
+      if (selectedService) {
+        setFormData(prev => ({ ...prev, projectType: selectedService }));
+      }
+    }
+  }, []);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -19,7 +49,7 @@ const Contact: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Simulation d'envoi
-    alert(`Merci ${formData.name}, votre message a bien été envoyé ! (Simulation)`);
+    alert(`Merci ${formData.name}, votre message pour le projet "${formData.projectType}" a bien été envoyé ! (Simulation)`);
     setFormData({ name: '', email: '', phone: '', projectType: '', message: '' });
   };
 
@@ -151,20 +181,25 @@ const Contact: React.FC = () => {
 
               <div className="space-y-2">
                 <label htmlFor="projectType" className="text-xs uppercase tracking-widest text-stone-600 font-bold">Type de projet</label>
-                <select
-                  id="projectType"
-                  name="projectType"
-                  value={formData.projectType}
-                  onChange={handleChange}
-                  className="w-full bg-white border border-gray-200 px-4 py-3 text-stone-800 focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 transition-colors rounded-sm appearance-none shadow-sm"
-                >
-                  <option value="" disabled>Sélectionnez une option</option>
-                  <option value="Rénovation complète">Rénovation complète</option>
-                  <option value="Architecture d'intérieur">Architecture d'intérieur</option>
-                  <option value="Décoration / Coaching">Décoration / Coaching</option>
-                  <option value="Professionnel">Projet Professionnel</option>
-                  <option value="Autre">Autre demande</option>
-                </select>
+                <div className="relative">
+                  <select
+                    id="projectType"
+                    name="projectType"
+                    value={formData.projectType}
+                    onChange={handleChange}
+                    className="w-full bg-white border border-gray-200 px-4 py-3 text-stone-800 focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 transition-colors rounded-sm appearance-none shadow-sm"
+                  >
+                    <option value="" disabled>Sélectionnez une option</option>
+                    <option value="Le Rendez-vous Conseil">Le Rendez-vous Conseil</option>
+                    <option value="Rénovation Résidence Principale">Rénovation Résidence Principale</option>
+                    <option value="Rénovation Résidence Secondaire">Rénovation Résidence Secondaire</option>
+                    <option value="Dossier Mairie - Déclaration">Dossier Mairie - Déclaration</option>
+                    <option value="Autre">Autre demande</option>
+                  </select>
+                  <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none">
+                    <svg className="w-4 h-4 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                  </div>
+                </div>
               </div>
 
               <div className="space-y-2">
