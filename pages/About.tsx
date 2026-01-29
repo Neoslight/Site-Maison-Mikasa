@@ -39,15 +39,20 @@ const About: React.FC = () => {
               <div className="w-12 h-0.5 bg-sage-400"></div>
             </div>
             
-            <p className="pt-4">
-              Originaire de <strong>Baden</strong>, dans le Golfe du Morbihan, j'ai grandi entre terre et mer, bercée par des paysages authentiques qui inspirent aujourd'hui mon travail au quotidien.
-            </p>
-            <p>
-              Après plusieurs années d'expérience dans l'agencement et la décoration, j'ai fondé <strong>Maison Mikasa</strong> avec une conviction forte : votre maison ne doit pas seulement être belle, elle doit être votre refuge absolu. Un lieu qui vous ressemble, qui vit avec vous, et qui traverse le temps sans prendre une ride.
-            </p>
-            <p>
-              Mon approche est celle de l'<strong>écoute active</strong>. Je ne plaque pas un "style prédéfini" sur votre intérieur ; je révèle son potentiel en fonction de <strong>votre</strong> mode de vie. J'aime les matériaux bruts, les lumières douces, et l'ingéniosité des espaces bien pensés.
-            </p>
+            <div className="pt-4 space-y-4">
+              <p>
+                Originaire de <strong>Baden</strong>, j’ai un lien particulier avec les maisons du Golfe du Morbihan. C’est ici que j’ai choisi de fonder <strong>Maison Mikasa</strong>, avec une conviction toute simple : votre maison ne doit pas seulement être "jolie", elle doit être votre véritable refuge.
+              </p>
+              <p>
+                Ce qui me passionne, c’est de voir au-delà des murs. Rien ne me fascine plus que de déceler le potentiel caché d'un bâtiment pour le transformer en un lieu qui vous ressemble enfin : un intérieur à la fois chaleureux et vraiment fonctionnel.
+              </p>
+              <p>
+                Mon approche privilégie l’intelligence des volumes et l’optimisation de chaque mètre carré. Plutôt que d'imposer un style figé, je cherche à révéler l'âme de vos espaces en m’imprégnant de votre façon de vivre. Mon métier, c'est de trouver cet équilibre subtil entre le cachet de l’ancien et le confort du moderne.
+              </p>
+              <p>
+                Je suis aussi là pour vous apporter de la sérénité. Je gère toute la complexité technique pour que vous n'ayez qu'à vous concentrer sur l'essentiel : vous projeter dans votre futur chez-vous. Ensemble, nous créons un environnement fluide et ressourçant, un lieu qui vit avec vous et simplifie votre quotidien.
+              </p>
+            </div>
             
             <div className="flex items-center space-x-3 text-sage-700 pt-6 font-medium text-sm bg-stone-50 p-4 rounded-sm border border-stone-100">
               <MapPin className="w-5 h-5 flex-shrink-0" />
@@ -58,7 +63,7 @@ const About: React.FC = () => {
       </Section>
 
       {/* Philosophy / Values */}
-      <Section bgColor="bg-stone-50" className="max-w-7xl mx-auto px-6">
+      <Section bgColor="bg-stone-50" className="max-w-7xl mx-auto px-6" py="py-20 md:py-24">
         <div className="text-center mb-16">
           <h2 className="font-serif text-3xl text-stone-800 mb-4">Mes valeurs</h2>
           <p className="text-stone-600 font-serif italic">Les piliers de chaque projet</p>
@@ -97,34 +102,6 @@ const About: React.FC = () => {
                 Je privilégie les matériaux naturels, le mobilier de qualité et les artisans locaux. Rénover, c'est aussi s'engager pour un habitat plus sain, pérenne et respectueux de l'environnement.
               </p>
            </div>
-        </div>
-      </Section>
-
-      {/* Why "Mikasa" ? */}
-      <Section className="max-w-5xl mx-auto px-6">
-        <div className="bg-stone-800 text-white rounded-sm p-8 md:p-16 text-center relative overflow-hidden shadow-2xl">
-          {/* Decorative circles */}
-          <div className="absolute top-0 left-0 w-32 h-32 bg-white opacity-5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
-          <div className="absolute bottom-0 right-0 w-48 h-48 bg-sage-500 opacity-10 rounded-full translate-x-1/3 translate-y-1/3"></div>
-
-          <div className="relative z-10">
-            <h2 className="font-serif text-3xl mb-6">Pourquoi "Maison Mikasa" ?</h2>
-            <div className="w-16 h-0.5 bg-sage-500 mx-auto mb-8"></div>
-            
-            <p className="text-stone-200 font-light leading-relaxed mb-8 text-lg max-w-3xl mx-auto">
-              Un clin d'œil à l'espagnol <strong>"Mi Casa"</strong> (ma maison), pour l'accueil et la chaleur latine, teinté d'une sonorité japonaise évoquant l'épure, la rigueur et l'harmonie zen.
-            </p>
-            <p className="text-stone-300 font-light text-base mb-10 max-w-2xl mx-auto">
-              C'est cette double identité que je souhaite apporter chez vous : un cocon chaleureux et vivant, pensé avec l'exigence de la simplicité.
-            </p>
-            
-            <a 
-              href="#contact" 
-              className="inline-flex items-center text-xs uppercase tracking-widest font-bold border border-sage-500/50 hover:bg-sage-600 hover:border-sage-600 px-8 py-4 transition-all duration-300 rounded-sm transform hover:-translate-y-1 hover:shadow-xl active:translate-y-0 active:shadow-sm"
-            >
-              Discutons de votre projet <ArrowRight className="w-4 h-4 ml-2" />
-            </a>
-          </div>
         </div>
       </Section>
     </div>

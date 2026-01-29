@@ -1,7 +1,7 @@
 import React from 'react';
 import Section from '../ui/Section';
 import Promises from './Promises';
-import { ArrowRight, Check } from 'lucide-react';
+import { ArrowRight, Check, Sparkles, Home, Ship, FileText } from 'lucide-react';
 
 const ServicesPreview: React.FC = () => {
   return (
@@ -10,18 +10,33 @@ const ServicesPreview: React.FC = () => {
       <Promises />
 
       {/* 2. Services List (Prestations) */}
-      <Section id="services" className="max-w-4xl mx-auto px-6 text-center">
+      <Section id="services" className="max-w-7xl mx-auto px-6 text-center">
         <h2 className="font-serif text-3xl text-stone-800 mb-4">Les prestations</h2>
-        <p className="text-stone-600 mb-12 italic font-serif">Découvrez les offres de Maison Mikasa :</p>
+        <p className="text-stone-600 mb-12 italic font-serif">Découvrez comment je peux vous accompagner :</p>
         
-        <div className="flex flex-col md:flex-row justify-center gap-8 md:gap-16">
-          <a href="#prestations" className="group flex flex-col items-center p-10 border border-gray-100 hover:border-sage-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 rounded-sm bg-white w-full md:w-72">
-            <span className="uppercase tracking-widest text-sm text-stone-700 group-hover:text-sage-700 mb-3 transition-colors font-semibold">Architecture d'intérieur</span>
-            <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-sage-500 group-hover:translate-x-2 transition-all duration-300" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <a href="#prestations" className="group p-8 border border-gray-100 hover:border-sage-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 rounded-sm bg-white flex flex-col items-center">
+            <Sparkles className="w-8 h-8 text-sage-400 group-hover:text-sage-600 mb-4 transition-colors" />
+            <span className="uppercase tracking-widest text-xs text-stone-700 group-hover:text-sage-700 mb-3 transition-colors font-bold">Rendez-vous Conseil</span>
+            <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-sage-500 group-hover:translate-x-1 transition-all duration-300 mt-auto" />
           </a>
-          <a href="#prestations" className="group flex flex-col items-center p-10 border border-gray-100 hover:border-sage-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 rounded-sm bg-white w-full md:w-72">
-            <span className="uppercase tracking-widest text-sm text-stone-700 group-hover:text-sage-700 mb-3 transition-colors font-semibold">Décoration d'intérieur</span>
-            <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-sage-500 group-hover:translate-x-2 transition-all duration-300" />
+          
+          <a href="#prestations" className="group p-8 border border-gray-100 hover:border-sage-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 rounded-sm bg-white flex flex-col items-center">
+            <Home className="w-8 h-8 text-sage-400 group-hover:text-sage-600 mb-4 transition-colors" />
+            <span className="uppercase tracking-widest text-xs text-stone-700 group-hover:text-sage-700 mb-3 transition-colors font-bold">Résidence Principale</span>
+            <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-sage-500 group-hover:translate-x-1 transition-all duration-300 mt-auto" />
+          </a>
+
+          <a href="#prestations" className="group p-8 border border-gray-100 hover:border-sage-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 rounded-sm bg-white flex flex-col items-center">
+            <Ship className="w-8 h-8 text-sage-400 group-hover:text-sage-600 mb-4 transition-colors" />
+            <span className="uppercase tracking-widest text-xs text-stone-700 group-hover:text-sage-700 mb-3 transition-colors font-bold">Résidence Secondaire</span>
+            <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-sage-500 group-hover:translate-x-1 transition-all duration-300 mt-auto" />
+          </a>
+
+          <a href="#prestations" className="group p-8 border border-gray-100 hover:border-sage-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 rounded-sm bg-white flex flex-col items-center">
+            <FileText className="w-8 h-8 text-sage-400 group-hover:text-sage-600 mb-4 transition-colors" />
+            <span className="uppercase tracking-widest text-xs text-stone-700 group-hover:text-sage-700 mb-3 transition-colors font-bold">Dossier Mairie</span>
+            <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-sage-500 group-hover:translate-x-1 transition-all duration-300 mt-auto" />
           </a>
         </div>
       </Section>

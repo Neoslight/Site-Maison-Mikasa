@@ -29,21 +29,15 @@ const AboutPreview: React.FC = () => {
           </div>
 
           <p>
-            Originaire de Baden, j’ai un lien particulier avec les maisons du <strong className="font-medium text-stone-900">Golfe du Morbihan</strong>. C’est ici que j’ai choisi de fonder <strong className="font-medium text-stone-900">Maison Mikasa</strong>, avec une conviction toute simple : votre maison ne doit pas seulement être "jolie", elle doit être votre véritable <strong className="font-medium text-stone-900">refuge</strong>.
+            Originaire de Baden, j’ai choisi de fonder <strong>Maison Mikasa</strong> avec une conviction simple : votre maison ne doit pas seulement être jolie, elle doit être votre véritable refuge. Passionnée par le potentiel caché des bâtiments, je transforme vos espaces en lieux qui vous ressemblent enfin.
           </p>
           <p>
-            Ce qui me passionne, c’est de voir au-delà des murs. Rien ne me fascine plus que de déceler le <strong className="font-medium text-stone-900">potentiel caché</strong> d'un bâtiment pour le transformer en un lieu qui vous ressemble enfin : un intérieur à la fois chaleureux et vraiment fonctionnel.
-          </p>
-          <p>
-            Mon approche privilégie l’<strong className="font-medium text-stone-900">intelligence des volumes</strong> et l’optimisation de chaque mètre carré. Plutôt que d'imposer un style figé, je cherche à révéler l'âme de vos espaces en m’imprégnant de votre façon de vivre. Mon métier, c'est de trouver cet équilibre subtil entre le cachet de l’ancien et le confort du moderne.
-          </p>
-          <p>
-            Je suis aussi là pour vous apporter de la <strong className="font-medium text-stone-900">sérénité</strong>. Je gère toute la complexité technique pour que vous n'ayez qu'à vous concentrer sur l'essentiel : vous projeter dans votre futur chez-vous. Ensemble, nous créons un environnement fluide et ressourçant, un lieu qui vit avec vous et <strong className="font-medium text-stone-900">simplifie votre quotidien</strong>.
+            Mon approche privilégie l’intelligence des volumes et l’équilibre entre le cachet de l’ancien et le confort du moderne. Je vous apporte sérénité et expertise technique pour créer un environnement fluide qui simplifie durablement votre quotidien.
           </p>
 
           <div className="pt-6">
             <a href="#about-page" className="text-sm border-b border-stone-800 pb-1 hover:text-sage-600 hover:border-sage-600 transition-colors uppercase tracking-widest text-stone-800">
-              En savoir plus
+              Lire la suite
             </a>
           </div>
         </div>
