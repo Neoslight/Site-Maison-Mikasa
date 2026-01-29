@@ -14,7 +14,7 @@ const AboutPreview: React.FC = () => {
         <div className="md:col-span-5 lg:col-span-4">
           <div className="relative aspect-[3/4] overflow-hidden rounded-sm shadow-md group">
             <img 
-              src="https://picsum.photos/id/64/600/800" 
+              src="data/IMG_4414_Original_Original.jpg" 
               alt="Laurine Fourcherot" 
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />

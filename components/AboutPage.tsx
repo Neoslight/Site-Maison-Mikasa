@@ -24,7 +24,7 @@ const AboutPage: React.FC = () => {
           <div className="relative order-1 md:order-1">
              <div className="aspect-[3/4] bg-stone-100 rounded-sm overflow-hidden shadow-xl">
                <img 
-                 src="https://picsum.photos/id/64/800/1066" 
+                 src="data/IMG_4414_Original_Original.jpg" 
                  alt="Laurine Fourcherot - Architecte d'intérieur" 
                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                />
@@ -101,33 +101,6 @@ const AboutPage: React.FC = () => {
         </div>
       </Section>
 
-      {/* Why "Mikasa" ? */}
-      <Section className="max-w-5xl mx-auto px-6">
-        <div className="bg-stone-800 text-white rounded-sm p-8 md:p-16 text-center relative overflow-hidden shadow-2xl">
-          {/* Decorative circles */}
-          <div className="absolute top-0 left-0 w-32 h-32 bg-white opacity-5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
-          <div className="absolute bottom-0 right-0 w-48 h-48 bg-sage-500 opacity-10 rounded-full translate-x-1/3 translate-y-1/3"></div>
-
-          <div className="relative z-10">
-            <h2 className="font-serif text-3xl mb-6">Pourquoi "Maison Mikasa" ?</h2>
-            <div className="w-16 h-0.5 bg-sage-500 mx-auto mb-8"></div>
-            
-            <p className="text-stone-200 font-light leading-relaxed mb-8 text-lg max-w-3xl mx-auto">
-              Un clin d'œil à l'espagnol <strong>"Mi Casa"</strong> (ma maison), pour l'accueil et la chaleur latine, teinté d'une sonorité japonaise évoquant l'épure, la rigueur et l'harmonie zen.
-            </p>
-            <p className="text-stone-300 font-light text-base mb-10 max-w-2xl mx-auto">
-              C'est cette double identité que je souhaite apporter chez vous : un cocon chaleureux et vivant, pensé avec l'exigence de la simplicité.
-            </p>
-            
-            <a 
-              href="#contact" 
-              className="inline-flex items-center text-xs uppercase tracking-widest font-bold border border-sage-500/50 hover:bg-sage-600 hover:border-sage-600 px-8 py-4 transition-all duration-300 rounded-sm transform hover:-translate-y-1 hover:shadow-xl active:translate-y-0 active:shadow-sm"
-            >
-              Discutons de votre projet <ArrowRight className="w-4 h-4 ml-2" />
-            </a>
-          </div>
-        </div>
-      </Section>
     </div>
   );
 };
