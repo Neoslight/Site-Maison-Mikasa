@@ -1,162 +1,260 @@
 import React from 'react';
 import Section from '../components/ui/Section';
-import { Ruler, Palette, PenTool, LayoutTemplate, HardHat, ShoppingBag, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { 
+  Sparkles, 
+  Home, 
+  Ship, 
+  FileText, 
+  ArrowRight, 
+  CheckCircle2, 
+  MapPin, 
+  Clock, 
+  Euro,
+  PenTool,
+  LayoutTemplate,
+  HardHat,
+  ShoppingBag,
+  Info
+} from 'lucide-react';
 
 const Services: React.FC = () => {
   return (
     <div className="bg-white">
       {/* Hero Header */}
-      <Section bgColor="bg-stone-50" className="text-center" py="py-24">
-        <div className="max-w-4xl mx-auto px-6">
-          <span className="text-sage-600 uppercase tracking-widest text-xs font-bold mb-4 block">Offres & Services</span>
-          <h1 className="font-serif text-4xl md:text-5xl text-stone-800 mb-6">Nos Prestations</h1>
-          <p className="text-stone-600 font-light max-w-2xl mx-auto leading-relaxed">
-            De la simple rénovation d'une pièce à la restructuration complète de votre habitat, Maison Mikasa vous accompagne à chaque étape. Découvrez nos deux expertises complémentaires.
-          </p>
+      <Section bgColor="bg-stone-50" className="text-center" py="py-20 md:py-28">
+        <div className="max-w-5xl mx-auto px-6">
+          <span className="text-sage-600 uppercase tracking-widest text-xs font-bold mb-6 block">Offres & Services</span>
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-stone-800 mb-10">Mes prestations</h1>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 text-left">
+            <p className="text-stone-700 font-serif italic text-lg md:text-xl leading-relaxed border-l-2 border-sage-200 pl-6">
+              De l’analyse de potentiel à la gestion complète de vos travaux, j’imagine des espaces où l’esthétique rencontre le bien-être. J’accompagne les propriétaires du Golfe du Morbihan à révéler la valeur de leurs biens à travers des agencements chaleureux et fonctionnels qui apaisent votre esprit et améliorent durablement votre quotidien.
+            </p>
+            <p className="text-stone-600 font-light leading-relaxed text-base">
+              De la première intuition sur le potentiel de votre bien jusqu’au suivi complet de vos travaux, je suis à vos côtés à chaque étape. Mon rôle est de dessiner des intérieurs où le beau se met vraiment au service du bien-être. En repensant vos espaces pour les rendre plus fluides et chaleureux, je valorise votre patrimoine tout en créant un cadre de vie qui, chaque jour, apaise l’esprit et simplifie durablement votre quotidien.
+            </p>
+          </div>
         </div>
       </Section>
 
-      {/* Navigation Rapide */}
-      <div className="sticky top-20 z-30 bg-white/90 backdrop-blur-sm border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-6 flex justify-center space-x-8 py-4">
-          <a href="#architecture-interieure" className="text-xs md:text-sm uppercase tracking-widest text-stone-500 hover:text-sage-600 font-medium">Architecture d'intérieur</a>
-          <a href="#decoration" className="text-xs md:text-sm uppercase tracking-widest text-stone-500 hover:text-sage-600 font-medium">Décoration</a>
-        </div>
-      </div>
-
-      {/* Architecture d'intérieur */}
-      <div id="architecture-interieure" className="scroll-mt-32">
-        <Section className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="order-2 lg:order-1 space-y-8">
-              <div>
-                <div className="flex items-center space-x-3 text-sage-600 mb-4">
-                  <Ruler className="w-6 h-6" />
-                  <span className="uppercase tracking-widest text-sm font-bold">Mission complète</span>
-                </div>
-                <h2 className="font-serif text-3xl md:text-4xl text-stone-800 mb-6">Architecture d'intérieur</h2>
-                <div className="w-16 h-0.5 bg-sage-400 mb-6"></div>
-                <p className="text-stone-700 font-light leading-relaxed text-lg">
-                  Vous souhaitez repenser les volumes, modifier la structure, créer une extension ou rénover intégralement votre bien ? Cette prestation est faite pour vous.
-                </p>
-                <p className="text-stone-700 font-light leading-relaxed mt-4">
-                  Nous travaillons sur la technique et l'esthétique pour transformer votre habitat en profondeur. Du premier coup de crayon à la réception du chantier, je suis votre interlocutrice unique.
-                </p>
+      {/* Main Offers Grid - Horizontal Layout */}
+      <Section className="max-w-[1600px] mx-auto px-6" py="py-16 md:py-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          {/* Offer 1: Le Rendez-vous Conseil */}
+          <div className="group flex flex-col bg-white border border-stone-100 rounded-sm shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-500 overflow-hidden">
+            <div className="p-8 flex-grow">
+              <div className="w-12 h-12 bg-sage-50 rounded-full flex items-center justify-center text-sage-600 mb-6 group-hover:bg-sage-600 group-hover:text-white transition-colors duration-500">
+                <Sparkles className="w-6 h-6" />
               </div>
-
-              <div className="space-y-6 bg-stone-50 p-8 rounded-sm">
-                <h3 className="font-serif text-xl text-stone-800">Le déroulé de la mission :</h3>
-                <ul className="space-y-4">
-                  <li className="flex items-start">
-                    <PenTool className="w-5 h-5 text-sage-600 mr-3 mt-1 flex-shrink-0" />
-                    <div>
-                      <strong className="text-stone-800 font-medium">Étude de faisabilité & Esquisse</strong>
-                      <p className="text-sm text-stone-600 font-light">Relevé de l'existant, propositions d'aménagement 2D/3D et estimation budgétaire.</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <LayoutTemplate className="w-5 h-5 text-sage-600 mr-3 mt-1 flex-shrink-0" />
-                    <div>
-                      <strong className="text-stone-800 font-medium">Dossier de Conception (APD)</strong>
-                      <p className="text-sm text-stone-600 font-light">Plans techniques détaillés (électricité, plomberie), coupes, élévations et choix définitifs des matériaux.</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <HardHat className="w-5 h-5 text-sage-600 mr-3 mt-1 flex-shrink-0" />
-                    <div>
-                      <strong className="text-stone-800 font-medium">Suivi de chantier</strong>
-                      <p className="text-sm text-stone-600 font-light">Consultation des entreprises, coordination des travaux, réunions hebdomadaires et réception.</p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
+              <h3 className="font-serif text-2xl text-stone-800 mb-2">Le Rendez-vous Conseil</h3>
+              <p className="text-sage-600 text-xs uppercase tracking-widest font-bold mb-6 italic">L'étincelle pour débloquer votre projet. ✨</p>
+              
+              <p className="text-sm text-stone-600 font-light leading-relaxed mb-6">
+                Une immersion de 2 heures chez vous pour clarifier votre vision et bénéficier de conseils personnalisés immédiats.
+              </p>
+              
+              <ul className="space-y-4 mb-8">
+                <li className="flex items-start">
+                  <CheckCircle2 className="w-4 h-4 text-sage-400 mr-3 mt-0.5 flex-shrink-0" />
+                  <p className="text-xs text-stone-700 font-light"><strong>Diagnostic :</strong> Analyse des besoins et du potentiel du lieu sur-place.</p>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle2 className="w-4 h-4 text-sage-400 mr-3 mt-0.5 flex-shrink-0" />
+                  <p className="text-xs text-stone-700 font-light"><strong>Conseils Stratégiques :</strong> Pistes d’agencement, matières, couleurs et technique.</p>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle2 className="w-4 h-4 text-sage-400 mr-3 mt-0.5 flex-shrink-0" />
+                  <p className="text-xs text-stone-700 font-light"><strong>Compte-Rendu :</strong> Envoi sous 48h d’un dossier stratégique.</p>
+                </li>
+              </ul>
             </div>
             
-            <div className="order-1 lg:order-2 relative aspect-[4/5]">
-              <div className="absolute inset-0 bg-sage-100 transform translate-x-4 translate-y-4 -z-10 rounded-sm"></div>
-              <img 
-                src="https://picsum.photos/id/120/800/1000" 
-                alt="Chantier de rénovation" 
-                className="w-full h-full object-cover rounded-sm shadow-md"
-              />
+            <div className="p-8 pt-0 mt-auto">
+              <div className="flex items-center justify-between py-4 border-t border-stone-50 mb-6">
+                <span className="text-xs uppercase tracking-widest text-stone-400 font-bold">Tarif</span>
+                <span className="font-serif text-xl text-stone-800">320 €</span>
+              </div>
+              <div className="flex items-start bg-sage-50/50 p-3 rounded-sm mb-6">
+                <Info className="w-3.5 h-3.5 text-sage-600 mr-2 flex-shrink-0 mt-0.5" />
+                <p className="text-[10px] text-sage-700 leading-tight">Détail : Ce montant est intégralement déduit si nous poursuivons sur une conception complète.</p>
+              </div>
+              <a href="#contact" className="block w-full text-center bg-stone-800 text-white text-[10px] uppercase tracking-widest font-bold py-4 hover:bg-sage-600 transition-colors rounded-sm shadow-sm">
+                Réserver mon rendez-vous
+              </a>
             </div>
           </div>
-        </Section>
-      </div>
 
-      {/* Divider */}
-      <div className="max-w-7xl mx-auto px-6"><div className="border-t border-gray-100"></div></div>
-
-      {/* Décoration */}
-      <div id="decoration" className="scroll-mt-32">
-        <Section className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="relative aspect-[4/5]">
-              <div className="absolute inset-0 bg-stone-100 transform -translate-x-4 translate-y-4 -z-10 rounded-sm"></div>
-              <img 
-                src="https://picsum.photos/id/42/800/1000" 
-                alt="Décoration d'intérieur" 
-                className="w-full h-full object-cover rounded-sm shadow-md"
-              />
-            </div>
-
-            <div className="space-y-8">
-              <div>
-                <div className="flex items-center space-x-3 text-sage-600 mb-4">
-                  <Palette className="w-6 h-6" />
-                  <span className="uppercase tracking-widest text-sm font-bold">Coaching & Ambiance</span>
+          {/* Offer 2: Rénovation Résidence Principale */}
+          <div className="group flex flex-col bg-stone-50 border border-stone-100 rounded-sm shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-500 overflow-hidden">
+            <div className="p-8 flex-grow">
+              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-sage-600 mb-6 group-hover:bg-sage-600 group-hover:text-white transition-colors duration-500 shadow-sm">
+                <Home className="w-6 h-6" />
+              </div>
+              <h3 className="font-serif text-2xl text-stone-800 mb-2">Rénovation Résidence Principale</h3>
+              <p className="text-sage-600 text-xs uppercase tracking-widest font-bold mb-6 italic">Un intérieur qui vous ressemble. 🪴</p>
+              
+              <p className="text-sm text-stone-600 font-light leading-relaxed mb-6">
+                Une conception sur-mesure axée sur l’ergonomie, la fluidité et une ambiance personnalisée pour optimiser votre quotidien.
+              </p>
+              
+              <div className="space-y-4 mb-8">
+                <span className="text-[10px] uppercase tracking-widest text-stone-400 font-bold block">Étapes de la mission</span>
+                <div className="grid grid-cols-2 gap-2">
+                   {['Étude (APS)', 'Dossier (APD)', 'Choix Matériaux', 'Suivi Chantier'].map((step, i) => (
+                     <div key={i} className="flex items-center bg-white p-2 rounded-sm border border-stone-100">
+                       <CheckCircle2 className="w-3 h-3 text-sage-500 mr-2 flex-shrink-0" />
+                       <span className="text-[10px] text-stone-700 truncate">{step}</span>
+                     </div>
+                   ))}
                 </div>
-                <h2 className="font-serif text-3xl md:text-4xl text-stone-800 mb-6">Décoration d'intérieur</h2>
-                <div className="w-16 h-0.5 bg-sage-400 mb-6"></div>
-                <p className="text-stone-700 font-light leading-relaxed text-lg">
-                  Vous ne souhaitez pas toucher à la structure, mais vous avez besoin de créer une atmosphère ? D'harmoniser les couleurs, de choisir le bon mobilier ou de repenser l'éclairage ?
-                </p>
-                <p className="text-stone-700 font-light leading-relaxed mt-4">
-                  Cette prestation s'adapte à vos besoins : du simple conseil à domicile (Coaching Déco) au dossier complet de décoration pour une pièce ou toute la maison.
-                </p>
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                 <div className="bg-white border border-gray-100 p-6 rounded-sm shadow-sm hover:border-sage-200 transition-colors">
-                    <h4 className="font-serif text-lg text-stone-800 mb-2">Coaching Déco</h4>
-                    <span className="text-xs uppercase tracking-widest text-sage-600 mb-3 block">Visite conseil (2h)</span>
-                    <p className="text-sm text-stone-600 font-light mb-4">
-                      Un rendez-vous sur place pour débloquer vos problématiques, valider des choix de couleurs ou d'agencement.
-                    </p>
-                    <ul className="text-sm text-stone-700 space-y-2">
-                       <li className="flex items-center"><CheckCircle2 className="w-3 h-3 text-sage-500 mr-2"/> Compte-rendu oral</li>
-                       <li className="flex items-center"><CheckCircle2 className="w-3 h-3 text-sage-500 mr-2"/> Références fournisseurs</li>
-                    </ul>
-                 </div>
-
-                 <div className="bg-white border border-gray-100 p-6 rounded-sm shadow-sm hover:border-sage-200 transition-colors">
-                    <h4 className="font-serif text-lg text-stone-800 mb-2">Book Déco</h4>
-                    <span className="text-xs uppercase tracking-widest text-sage-600 mb-3 block">Étude complète</span>
-                    <p className="text-sm text-stone-600 font-light mb-4">
-                      Un dossier complet pour visualiser votre futur intérieur et réaliser vos achats sereinement.
-                    </p>
-                    <ul className="text-sm text-stone-700 space-y-2">
-                       <li className="flex items-center"><CheckCircle2 className="w-3 h-3 text-sage-500 mr-2"/> Planche d'ambiance</li>
-                       <li className="flex items-center"><CheckCircle2 className="w-3 h-3 text-sage-500 mr-2"/> Visuels 3D photoréalistes</li>
-                       <li className="flex items-center"><CheckCircle2 className="w-3 h-3 text-sage-500 mr-2"/> Shopping list détaillée</li>
-                    </ul>
-                 </div>
+              
+              <p className="text-[11px] text-stone-500 leading-relaxed italic">
+                De l'esquisse 3D aux plans techniques et au pilotage des travaux.
+              </p>
+            </div>
+            
+            <div className="p-8 pt-0 mt-auto">
+              <div className="flex items-center justify-between py-4 border-t border-stone-200/50 mb-6">
+                <span className="text-xs uppercase tracking-widest text-stone-400 font-bold">Tarif</span>
+                <span className="font-serif text-xl text-stone-800">Dès 1 600 € <span className="text-xs font-sans text-stone-500">/ pièce</span></span>
               </div>
+              <a href="#contact" className="block w-full text-center bg-sage-600 text-white text-[10px] uppercase tracking-widest font-bold py-4 hover:bg-sage-700 transition-colors rounded-sm shadow-sm">
+                Demander un devis
+              </a>
             </div>
           </div>
-        </Section>
-      </div>
 
-      {/* CTA Section */}
-      <Section bgColor="bg-stone-800" className="text-center text-white">
+          {/* Offer 3: Rénovation Résidence Secondaire */}
+          <div className="group flex flex-col bg-white border border-stone-100 rounded-sm shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-500 overflow-hidden">
+            <div className="p-8 flex-grow">
+              <div className="w-12 h-12 bg-sage-50 rounded-full flex items-center justify-center text-sage-600 mb-6 group-hover:bg-sage-600 group-hover:text-white transition-colors duration-500">
+                <Ship className="w-6 h-6" />
+              </div>
+              <h3 className="font-serif text-2xl text-stone-800 mb-2">Rénovation Résidence Secondaire</h3>
+              <p className="text-sage-600 text-xs uppercase tracking-widest font-bold mb-6 italic">Votre refuge en bord de mer. ⛵</p>
+              
+              <p className="text-sm text-stone-600 font-light leading-relaxed mb-6">
+                Une gestion "clés en main" de la conception à la mise en place du mobilier pour transformer votre bien sans vous déplacer.
+              </p>
+              
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-start">
+                  <CheckCircle2 className="w-4 h-4 text-sage-400 mr-3 mt-0.5 flex-shrink-0" />
+                  <p className="text-xs text-stone-700 font-light"><strong>Relais local :</strong> Gestion totale des devis et entreprises en votre absence.</p>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle2 className="w-4 h-4 text-sage-400 mr-3 mt-0.5 flex-shrink-0" />
+                  <p className="text-xs text-stone-700 font-light"><strong>Ameublement :</strong> Commande, réception et installation complète.</p>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle2 className="w-4 h-4 text-sage-400 mr-3 mt-0.5 flex-shrink-0" />
+                  <p className="text-xs text-stone-700 font-light"><strong>Spécificité :</strong> Durabilité et déconnexion pour maison de vacances.</p>
+                </li>
+              </ul>
+            </div>
+            
+            <div className="p-8 pt-0 mt-auto">
+              <div className="flex items-center justify-between py-4 border-t border-stone-50 mb-6">
+                <span className="text-xs uppercase tracking-widest text-stone-400 font-bold">Tarif</span>
+                <span className="font-serif text-xl text-stone-800">Sur Devis</span>
+              </div>
+              <a href="#contact" className="block w-full text-center bg-stone-800 text-white text-[10px] uppercase tracking-widest font-bold py-4 hover:bg-sage-600 transition-colors rounded-sm shadow-sm">
+                Discuter de mon projet
+              </a>
+            </div>
+          </div>
+
+          {/* Offer 4: Dossier Mairie */}
+          <div className="group flex flex-col bg-stone-50 border border-stone-100 rounded-sm shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-500 overflow-hidden">
+            <div className="p-8 flex-grow">
+              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-sage-600 mb-6 group-hover:bg-sage-600 group-hover:text-white transition-colors duration-500 shadow-sm">
+                <FileText className="w-6 h-6" />
+              </div>
+              <h3 className="font-serif text-2xl text-stone-800 mb-2">Dossier Mairie - Déclaration</h3>
+              <p className="text-sage-600 text-xs uppercase tracking-widest font-bold mb-6 italic">Sécuriser vos démarches. 🏡</p>
+              
+              <p className="text-sm text-stone-600 font-light leading-relaxed mb-6">
+                Réalisation des dossiers administratifs pour modifications de façade, extensions ou aménagements extérieurs.
+              </p>
+              
+              <ul className="space-y-4 mb-8">
+                <li className="flex items-start">
+                  <CheckCircle2 className="w-4 h-4 text-sage-400 mr-3 mt-0.5 flex-shrink-0" />
+                  <p className="text-xs text-stone-700 font-light"><strong>Dossier Graphique :</strong> Plans de masse, façades et insertions paysagères.</p>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle2 className="w-4 h-4 text-sage-400 mr-3 mt-0.5 flex-shrink-0" />
+                  <p className="text-xs text-stone-700 font-light"><strong>Gestion Admin :</strong> Rédaction Cerfa et constitution du dossier complet.</p>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle2 className="w-4 h-4 text-sage-400 mr-3 mt-0.5 flex-shrink-0" />
+                  <p className="text-xs text-stone-700 font-light"><strong>Suivi Mairie :</strong> Accompagnement jusqu’à l'obtention de l'accord.</p>
+                </li>
+              </ul>
+            </div>
+            
+            <div className="p-8 pt-0 mt-auto">
+              <div className="flex items-center justify-between py-4 border-t border-stone-200/50 mb-6">
+                <span className="text-xs uppercase tracking-widest text-stone-400 font-bold">Tarif</span>
+                <span className="font-serif text-xl text-stone-800">Dès 600 €</span>
+              </div>
+              <a href="#contact" className="block w-full text-center bg-stone-300 text-stone-800 text-[10px] uppercase tracking-widest font-bold py-4 hover:bg-sage-600 hover:text-white transition-all rounded-sm shadow-sm">
+                Confier mon dossier
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </Section>
+
+      {/* Process Visualization Section */}
+      <Section bgColor="bg-stone-900" className="text-white" py="py-20 md:py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="font-serif text-3xl md:text-4xl mb-4">Un accompagnement serein</h2>
+            <p className="text-stone-400 font-light uppercase tracking-[0.2em] text-xs">Le déroulement de notre collaboration</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {[
+              { icon: PenTool, title: "Ébauche", desc: "Étude de faisabilité et premières esquisses 3D." },
+              { icon: LayoutTemplate, title: "Conception", desc: "Plans techniques détaillés et choix des matériaux." },
+              { icon: HardHat, title: "Travaux", desc: "Coordination rigoureuse des entreprises locales." },
+              { icon: ShoppingBag, title: "Finalisation", desc: "Mise en place de la décoration et livraison." }
+            ].map((step, idx) => (
+              <div key={idx} className="relative flex flex-col items-center text-center group">
+                {idx < 3 && <div className="hidden md:block absolute top-10 left-[70%] w-full h-[1px] bg-stone-800"></div>}
+                <div className="w-20 h-20 rounded-full border border-stone-700 flex items-center justify-center mb-6 group-hover:border-sage-500 transition-colors duration-500">
+                  <step.icon className="w-8 h-8 text-sage-500" strokeWidth={1} />
+                </div>
+                <h4 className="font-serif text-xl mb-3">{step.title}</h4>
+                <p className="text-stone-400 text-sm font-light leading-relaxed">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* FAQ / Final CTA */}
+      <Section className="text-center" py="py-20">
         <div className="max-w-3xl mx-auto px-6">
-          <h2 className="font-serif text-3xl mb-6">Vous hésitez entre ces prestations ?</h2>
-          <p className="text-stone-300 font-light text-lg mb-8">
-            Chaque projet est unique. Contactez-nous pour discuter de vos besoins, nous vous orienterons vers la solution la plus adaptée.
+          <div className="inline-block p-4 bg-sage-50 rounded-full mb-8">
+            <Info className="w-6 h-6 text-sage-600" />
+          </div>
+          <h2 className="font-serif text-3xl text-stone-800 mb-6">Vous hésitez entre ces prestations ?</h2>
+          <p className="text-stone-600 font-light text-lg mb-10 leading-relaxed">
+            Chaque projet est unique et mérite une approche adaptée. Contactez-nous pour discuter de vos besoins, nous vous orienterons vers la solution la plus pertinente pour votre habitat.
           </p>
-          <a href="#contact" className="inline-flex items-center bg-white text-stone-900 px-8 py-3 uppercase tracking-widest text-xs font-bold hover:bg-sage-100 transition-colors rounded-sm">
-            Demander un devis <ArrowRight className="w-4 h-4 ml-2" />
-          </a>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+            <a href="#contact" className="inline-flex items-center bg-sage-600 text-white px-10 py-4 uppercase tracking-widest text-[10px] font-bold hover:bg-sage-700 transition-all rounded-sm shadow-md hover:-translate-y-1">
+              Demander un devis personnalisé <ArrowRight className="w-4 h-4 ml-2" />
+            </a>
+            <a href="tel:0689408566" className="inline-flex items-center text-stone-800 px-10 py-4 uppercase tracking-widest text-[10px] font-bold border border-stone-200 hover:border-sage-600 transition-all rounded-sm">
+              06 89 40 85 66
+            </a>
+          </div>
         </div>
       </Section>
     </div>
